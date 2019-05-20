@@ -1,0 +1,14 @@
+<%= articles.count %> статті на сайті
+<br>
+<a href="/article">Нова сторінка</a>
+<% articles.each do |article| %>
+  <p>
+    <a href="/article?id=<%= article[:id] %>">
+      ID: <%= article[:id]%> <%= article[:title] %>
+      </span>
+    </a>
+<!--     <p class="right">
+      <%= article[:slug] %>
+    </p> -->
+  </p>
+<% end %>

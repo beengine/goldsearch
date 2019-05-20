@@ -1,0 +1,30 @@
+<script src="https://cdn.ckeditor.com/4.11.4/standard-all/ckeditor.js"></script>
+<script src="/uploadcare_3.0.0/plugin.js"></script>
+<script src="/embedbase/plugin.js"></script>
+<script src="/embed/plugin.js"></script>
+<form action="/article" method="post">
+  <input type="hidden" name='id' value="<%= article[:id] %>">
+  <label>Мова</label>
+  <select name="lang">
+    <option value='0' <%= 'selected' if article[:lang]==0 %>>English</option>
+    <option value='1' <%= 'selected' if article[:lang]==1 %>> Українська</option>
+    <option value='2' <%= 'selected' if article[:lang]==2 %>> Русский</option>
+  </select>
+  <br>
+  <label>Адреса</label>
+  <input type="text" name="slug" value="<%= article[:slug] %>">
+  <br>
+  <label>Заголовок</label>
+  <input type="text" name="title" value="<%= article[:title] %>">
+  <br>
+  <textarea name="body" id="article"><%= article[:body] %></textarea>
+
+
+  <button type="submit" value="Save">Зберегти</button>
+</form>
+<script>
+  UPLOADCARE_PUBLIC_KEY = 'be9ec2504094b8a1631c'
+  CKEDITOR.plugins.addExternal( 'embed', '/embed/', 'plugin.js' );
+  CKEDITOR.plugins.addExternal( 'uploadcare', '/uploadcare_3.0.0/', 'plugin.js' );
+  CKEDITOR.replace('body', {extraPlugins: 'embed,uploadcare', embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}'});
+</script>
