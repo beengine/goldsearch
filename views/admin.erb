@@ -1,6 +1,25 @@
-<%= articles.count %> статті на сайті
+<h3>Статті</h3>
+<%= articles.count %> статей на сайті
 <br>
 <a href="/article">Нова сторінка</a>
+<br>
+<form action="/article" method="get">
+  <input type="hidden" name="dup" value="1">
+  Дублювати сторінку
+  <select name="id">
+    <% articles.each do |article| %>
+      <option value="<%= article[:id] %>"><%= article[:title] %> [<%= LANGS[article[:lang]] %>]</option>
+    <% end %>
+  </select>
+  на
+  <select name="lang">
+    <% LANGS.each_with_index do |lang, code| %>
+      <option value="<%= code %>"><%= lang %></option>
+    <% end %>
+  </select>
+  <button>Дублювати</button>
+</form>
+<br>
 <% articles.each do |article| %>
   <p>
     <a href="/article?id=<%= article[:id] %>">
@@ -12,3 +31,6 @@
     </p> -->
   </p>
 <% end %>
+<h3>Команда</h3>
+
+<%= articles.count %> людей на сайті
