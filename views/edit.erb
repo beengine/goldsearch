@@ -5,6 +5,14 @@
 <p style="color: red;"><%= error %></p>
 <form action="/article" method="post">
   <input type="hidden" name='id' value="<%= article[:id] %>">
+  Розташування
+  <select name="article[parent_id]">
+    <option selected value>Головне меню</option>
+    <% articles.each do |art| %>
+      <option value="<%= art[:id] %>" <%= 'selected' if article[:parent_id]==art[:id] %>><%= art[:title] %> [<%= LANGS[art[:lang]] %>]</option>
+    <% end %>
+  </select>
+  <br>
   <label>Мова</label>
   <select name="article[lang]">
     <option value='0' <%= 'selected' if article[:lang]==0 %>>English</option>

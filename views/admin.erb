@@ -19,18 +19,29 @@
   </select>
   <button>Дублювати</button>
 </form>
-<br>
-<% articles.each do |article| %>
-  <p>
-    <a href="/article?id=<%= article[:id] %>">
-      ID: <%= article[:id]%> <%= article[:title] %>
-      </span>
-    </a>
-<!--     <p class="right">
-      <%= article[:slug] %>
-    </p> -->
-  </p>
-<% end %>
+<ul>
+  <% LANGS.each_with_index do |lang, code| %>
+  <h4><%= lang %></h4>
+    <% articles.where(parent_id: nil, lang: code).each do |article| %>
+      <li>
+        <a href="/article?id=<%= article[:id] %>">
+          [ID:<%= article[:id] %>] <%= article[:title] %> [<%= LANGS[article[:lang]] %>]
+        </a>
+        <ul>
+          <% articles.where(parent_id: article[:id]).each do |article_1| %>
+            <li>
+              <a href="/article?id=<%= article_1[:id] %>">
+                [ID:<%= article_1[:id] %>] <%= article_1[:title] %> [<%= LANGS[article_1[:lang]] %>]
+              </a>
+              <ul>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
 <h3>Команда</h3>
 
 <%= articles.count %> людей на сайті

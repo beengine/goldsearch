@@ -7,8 +7,9 @@ DB = Sequel.connect(adapter: :postgres, database: 'gold_dev', host: 'localhost')
 
 DB.create_table :articles do
   primary_key :id
-  String :slug, unique: true, null: false
+  String :slug, unique: true, null: false, default: ''
   String :title, null: false
   String :body, text: true
   Integer :lang, null: false
+  foreign_key :parent_id
 end
