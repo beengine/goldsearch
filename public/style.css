@@ -47,11 +47,7 @@ table {
 
 body {
   font-family: 'Yanone Kaffeesatz', sans-serif;
-  /*color: #fff;*/
-}
-
-body .ck-editor {
- color: #000; 
+  color: #fff;
 }
 
 header {
@@ -59,7 +55,7 @@ header {
 }
 
 a {
-  /*color: #fff;*/
+  color: #fff;
   text-decoration: none;
 }
 

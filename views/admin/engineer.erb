@@ -1,0 +1,22 @@
+<p style="color: red;"><%= error %></p>
+<form action="/admin/engineer" method="post">
+  <input type="hidden" name='id' value="<%= engineer[:id] %>">
+  <label>Фото</label>
+  <input type="hidden" role="uploadcare-uploader" name="engineer[image]" value="<%= engineer[:image] %>" data-images-only="true">
+  <br>
+  <br>
+  <label>Спеціальність</label>
+  <select name="engineer[specialty_id]">
+    <% specialties.each do |specialty| %>
+      <option value="<%= specialty[:id] %>"><%= specialty[:name_ua] %></option>
+    <% end %>
+  </select>
+  <br>
+  <br>
+  <% if engineer[:id] %>
+    <% LANGS.each_with_index do |lang, code| %>
+      <a href="/admin/engineer_translation?engineer=<%= engineer[:id] %>&lang=<%= code %>"></a>
+    <% end %>
+  <% end %>
+  <button type="submit">Зберегти</button>
+</form>

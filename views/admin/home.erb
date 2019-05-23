@@ -1,9 +1,9 @@
 <h3>Статті</h3>
 <%= articles.count %> статей на сайті
 <br>
-<a href="/article">Нова сторінка</a>
+<a href="/admin/article">Нова сторінка</a>
 <br>
-<form action="/article" method="get">
+<form action="/admin/article" method="get">
   <input type="hidden" name="dup" value="1">
   Дублювати сторінку
   <select name="id">
@@ -24,13 +24,13 @@
   <h4><%= lang %></h4>
     <% articles.where(parent_id: nil, lang: code).each do |article| %>
       <li>
-        <a href="/article?id=<%= article[:id] %>">
+        <a href="/admin/article?id=<%= article[:id] %>">
           [ID:<%= article[:id] %>] <%= article[:title] %> [<%= LANGS[article[:lang]] %>]
         </a>
         <ul>
           <% articles.where(parent_id: article[:id]).each do |article_1| %>
             <li>
-              <a href="/article?id=<%= article_1[:id] %>">
+              <a href="/admin/article?id=<%= article_1[:id] %>">
                 [ID:<%= article_1[:id] %>] <%= article_1[:title] %> [<%= LANGS[article_1[:lang]] %>]
               </a>
               <ul>
@@ -42,6 +42,25 @@
     <% end %>
   <% end %>
 </ul>
+<h3>Спеціальності</h3>
+<% specialties.each do |specialty| %>
+  <a href="/admin/specialty?id=<%= specialty[:id] %>">
+    <%= "#{specialty[:name_ua]} | #{specialty[:name_ru]} | #{specialty[:name_en]}" %>
+  </a>
+  <br>
+<% end %>
+<br>
+<a href="/admin/specialty">Нова спеціальність</a>
+
 <h3>Команда</h3>
 
-<%= articles.count %> людей на сайті
+<%= engineers.count %> людей на сайті
+<br>
+<a href="/admin/engineer">Новий інженер</a>
+<br>
+<% engineers.each do |engineer| %>
+  <a href="/admin/engineer?id=<%= engineer[:id] %>">
+    <%= "#{engineer[:image]}" %>
+  </a>
+  <br>
+<% end %>

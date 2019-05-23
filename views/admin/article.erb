@@ -1,9 +1,5 @@
-<script src="https://cdn.ckeditor.com/4.11.4/standard-all/ckeditor.js"></script>
-<script src="/uploadcare_3.0.0/plugin.js"></script>
-<script src="/embedbase/plugin.js"></script>
-<script src="/embed/plugin.js"></script>
 <p style="color: red;"><%= error %></p>
-<form action="/article" method="post">
+<form action="/admin/article" method="post">
   <input type="hidden" name='id' value="<%= article[:id] %>">
   Розташування
   <select name="article[parent_id]">
