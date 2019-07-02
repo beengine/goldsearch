@@ -58,9 +58,19 @@
 <br>
 <a href="/admin/engineer">Новий інженер</a>
 <br>
-<% engineers.each do |engineer| %>
-  <a href="/admin/engineer?id=<%= engineer[:id] %>">
-    <%= "#{engineer[:image]}" %>
-  </a>
-  <br>
+<% engineers.each do |engineer_id, translations| %>
+  <p>
+    <a href="/admin/engineer?id=<%= engineer_id %>">
+      <img src="<%= translations.first[:image] %>" width="55" height="55" style="float: left; margin-right: 3px;">
+      <% translations.each do |translation| %>
+       <% unless translation[:lang] %>
+          <span style="color: red">Немає перекладів</span>
+        <% else %>
+          <%= translation[:name] %> (<%= LANGS[translation[:lang]] %>)
+          <br>
+        <% end %>
+      <% end %>
+    </a>
+  </p>
+  <div style="clear: left"></div>
 <% end %>

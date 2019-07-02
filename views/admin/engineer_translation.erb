@@ -1,0 +1,29 @@
+<h3><%= LANGS[translation[:lang].to_i] %></h3>
+<p style="color: red;"><%= error %></p>
+<form action="/admin/engineer_translation" method="post">
+  <input type="hidden" name="id" value="<%= translation[:id] %>">
+  <input type="hidden" name="engineer_translation[engineer_id]" value="<%= translation[:engineer_id] %>">
+  <input type="hidden" name="engineer_translation[lang]" value="<%= translation[:lang] %>">
+  <label>Ім'я</label>
+  <input type="text" name="engineer_translation[name]" value="<%= translation[:name] %>">
+  <br>
+  <label>Адреса</label>
+  <input type="text" name="engineer_translation[slug]" value="<%= translation[:slug] %>">
+  <br>
+  <label>Спеціальність</label>
+  <input type="text" name="engineer_translation[specialty]" value="<%= translation[:specialty] %>">
+  <br>
+  <label>Резюме</label>
+  <textarea name="engineer_translation[resume]"><%= translation[:resume] %></textarea>
+  <br>
+  <label>Детальний опис</label>
+  <textarea name="engineer_translation[desc]"><%= translation[:desc] %></textarea>
+  <button type="submit">Зберегти</button>
+  <br>
+  <br>
+</form>
+<script>
+  CKEDITOR.plugins.addExternal( 'embed', '/embed/', 'plugin.js' );
+  CKEDITOR.plugins.addExternal( 'uploadcare', '/uploadcare_3.0.0/', 'plugin.js' );
+  CKEDITOR.replace('engineer_translation[desc]', {extraPlugins: 'embed,uploadcare', embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}'});
+</script>

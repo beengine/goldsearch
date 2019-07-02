@@ -3,6 +3,7 @@ require 'sinatra/reloader' if development?
 require 'sinatra/namespace'
 require 'sequel'
 require 'pg'
+require 'pry'
 
 
 configure do
@@ -16,12 +17,21 @@ helpers do
   def clear_params(params)
     params.reject{ |k, v| v.empty? }
   end
+
+  def get_translations(locals, engineer_id)
+    if engineer_id
+      translations = DB[:engineer_translations].where(engineer_id: engineer_id)
+      locals[:translations] = translations
+    end
+  end
 end
 
 namespace '/admin' do
   set :views, settings.root + '/views/admin'
   get '/?' do
-    erb :home, locals: { articles: DB[:articles], engineers: DB[:engineers], specialties: DB[:specialties] }
+    # binding.pry
+    engineers = DB['SELECT engineers.id, engineers.image, engineer_translations.name, engineer_translations.lang FROM engineers LEFT OUTER JOIN engineer_translations ON engineer_translations.engineer_id = engineers.id'].all.group_by{ |tr| tr[:id] }
+    erb :home, locals: { articles: DB[:articles], engineers: engineers, specialties: DB[:specialties] }
   end
 
   get '/article' do
@@ -65,21 +75,54 @@ namespace '/admin' do
   end
 
   get '/engineer' do
-    engineer = DB[:engineers].left_join(DB[:engineer_translations]).where('engineers.id = ?', params[:id])
-    locals = { engineer: engineer || {}, error: nil, specialties: DB[:specialties] }
+    locals = {
+      engineer: DB[:engineers].where(id: params[:id]).first || {},
+      error: nil,
+      specialties: DB[:specialties]
+    }
+    get_translations(locals, params[:id])
+    # binding.pry
     erb :engineer, locals: locals
   end
 
   post '/engineer' do
     begin
       if params[:id].empty?
-        DB[:engineers].insert(clear_params(params[:engineer]))
+        params[:id] = DB[:engineers].insert(clear_params(params[:engineer]))
       else
         DB[:engineers].where(id: params[:id]).update(clear_params(params[:engineer]))
       end
-      redirect '/admin'
+      redirect "/admin/engineer?id=#{params[:id]}"
     rescue Sequel::Error => e
       erb :engineer, locals: { error: e, engineer: params[:engineer], specialties: DB[:specialties] }
+    end
+  end
+
+  get '/engineer_translation' do
+    locals = {
+      engineer: DB[:engineers].where(id: params[:id]).first || {},
+      translation: DB[:engineer_translations].where(id: params[:id]).first || {lang: params[:lang].to_i, engineer_id: params[:engineer_id] },
+      error: nil
+    }
+    erb :engineer_translation, locals: locals
+  end
+
+  post '/engineer_translation' do
+    begin
+      if params[:id].empty?
+        DB[:engineer_translations].insert(clear_params(params[:engineer_translation]))
+      else
+        DB[:engineer_translations].where(id: params[:id]).update(clear_params(params[:engineer_translation]))
+      end
+      redirect "/admin/engineer?id=#{params[:engineer_translation][:engineer_id]}"
+    rescue Sequel::Error => e
+      locals = {
+        engineer: DB[:engineers].where(id: params[:engineer_translation][:engineer_id]).first,
+        translation: params[:engineer_translation],
+        error: e
+      }
+      get_translations(locals, params[:engineer_translation][:engineer_id])
+      erb :engineer_translation, locals: locals
     end
   end
 end

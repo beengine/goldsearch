@@ -16,7 +16,7 @@ end
 
 DB.create_table :specialties do
   primary_key :id
-  String :image
+  String :image, null: false
   String :name_en, unique: true, null: false
   String :slug_en, unique: true, null: false
   String :name_ua, unique: true, null: false

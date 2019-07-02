@@ -28,7 +28,6 @@
   <button type="submit" value="Save">Зберегти</button>
 </form>
 <script>
-  UPLOADCARE_PUBLIC_KEY = 'be9ec2504094b8a1631c'
   CKEDITOR.plugins.addExternal( 'embed', '/embed/', 'plugin.js' );
   CKEDITOR.plugins.addExternal( 'uploadcare', '/uploadcare_3.0.0/', 'plugin.js' );
   CKEDITOR.replace('article[body]', {extraPlugins: 'embed,uploadcare', embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}'});
