@@ -1,34 +1,36 @@
-<p style="color: red;"><%= error %></p>
-<form action="/admin/article" method="post">
-  <input type="hidden" name='id' value="<%= article[:id] %>">
-  Розташування
-  <select name="article[parent_id]">
-    <option selected value>Головне меню</option>
-    <% articles.each do |art| %>
-      <option value="<%= art[:id] %>" <%= 'selected' if article[:parent_id]==art[:id] %>><%= art[:title] %> [<%= LANGS[art[:lang]] %>]</option>
-    <% end %>
-  </select>
-  <br>
-  <label>Мова</label>
-  <select name="article[lang]">
-    <option value='0' <%= 'selected' if article[:lang]==0 %>>English</option>
-    <option value='1' <%= 'selected' if article[:lang]==1 %>> Українська</option>
-    <option value='2' <%= 'selected' if article[:lang]==2 %>> Русский</option>
-  </select>
-  <br>
-  <label>Адреса</label>
-  <input type="text" name="article[slug]" value="<%= article[:slug] %>">
-  <br>
-  <label>Заголовок</label>
-  <input type="text" name="article[title]" value="<%= article[:title] %>">
-  <br>
-  <textarea name="article[body]"><%= article[:body] %></textarea>
+<div class="article">
+  <p style="color: red;"><%= error %></p>
+  <form action="/admin/article" method="post">
+    <input type="hidden" name='id' value="<%= article[:id] %>">
+    Розташування
+    <select name="article[parent_id]">
+      <option selected value>Головне меню</option>
+      <% articles.each do |art| %>
+        <option value="<%= art[:id] %>" <%= 'selected' if article[:parent_id]==art[:id] %>><%= art[:title] %> [<%= LANGS[art[:lang]] %>]</option>
+      <% end %>
+    </select>
+    <br>
+    <label>Мова</label>
+    <select name="article[lang]">
+      <option value='0' <%= 'selected' if article[:lang]==0 %>>English</option>
+      <option value='1' <%= 'selected' if article[:lang]==1 %>> Українська</option>
+      <option value='2' <%= 'selected' if article[:lang]==2 %>> Русский</option>
+    </select>
+    <br>
+    <label>Адреса</label>
+    <input type="text" name="article[slug]" value="<%= article[:slug] %>">
+    <br>
+    <label>Заголовок</label>
+    <input type="text" name="article[title]" value="<%= article[:title] %>">
+    <br>
+    <textarea name="article[body]"><%= article[:body] %></textarea>
 
 
-  <button type="submit" value="Save">Зберегти</button>
-</form>
-<script>
-  CKEDITOR.plugins.addExternal( 'embed', '/embed/', 'plugin.js' );
-  CKEDITOR.plugins.addExternal( 'uploadcare', '/uploadcare_3.0.0/', 'plugin.js' );
-  CKEDITOR.replace('article[body]', {extraPlugins: 'embed,uploadcare', embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}'});
-</script>
+    <button type="submit" value="Save">Зберегти</button>
+  </form>
+  <script>
+    CKEDITOR.plugins.addExternal( 'embed', '/embed/', 'plugin.js' );
+    CKEDITOR.plugins.addExternal( 'uploadcare', '/uploadcare_3.0.0/', 'plugin.js' );
+    CKEDITOR.replace('article[body]', {extraPlugins: 'embed,uploadcare', embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}'});
+  </script>
+</div>

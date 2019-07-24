@@ -1,0 +1,19 @@
+langs:
+  - header: Team
+    home_link: /
+    team_link: /team
+    name: :name_en
+    slug: :slug_en
+    text: :text_en
+  - header: Команда
+    home_link: /головна
+    team_link: /команда
+    name: :name_ua
+    slug: :slug_ua
+    text: :text_ua
+  - header: Команда
+    home_link: /главная
+    team_link: /наша-команда
+    name: :name_ru
+    slug: :slug_ru
+    text: :text_ru

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,300,200");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Yanone+Kaffeesatz:400,300,200");
 /* css reset */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -48,10 +48,19 @@ table {
 body {
   font-family: 'Yanone Kaffeesatz', sans-serif;
   color: #fff;
+  background: url('images/bg02.jpg');
 }
 
-header {
+
+footer {
   background: url('images/bg01.jpg');
+  position: relative;
+  font-size: 32px;
+}
+
+footer .content {
+  display: flex;
+  justify-content: space-around;
 }
 
 a {
@@ -59,17 +68,34 @@ a {
   text-decoration: none;
 }
 
-nav {
+/*nav {
   border-bottom: solid 1px #222628
-}
+}*/
 
-nav ul {
+header div.content {
   display: flex;
   justify-content: space-between;
   font-weight: 200;
   font-size: 2.25em;
   color: #c6c8c8;
 }
+header.top {
+  position: fixed;
+  right: 0;
+  left: 0;
+  background: url('images/bg02.jpg');
+  z-index: 7;
+}
+header.bottom {
+  background: url('images/bg01.jpg');
+  padding-top: 32px;
+}
+header.top div.content {
+  font-size: 1.2em;
+  padding: 2px;
+  justify-content: space-around;
+}
+
 nav ul a {
   color: #c6c8c8;
 }
@@ -84,23 +110,44 @@ nav ul li.title a {
 .content {
   margin: 0 auto;
   max-width: 1200px;
-  padding: 20px;
+  padding: 10px 20px;
 }
 
-article {
+/*article {
   display: flex;
   font-size: 1.5em;
   justify-content: space-between;
-}
-div.img {
+}*/
+/*div.img {
   border: 10px solid #fff;
 }
 div.img img {
   height: 200px;
+}*/
+.article img {
+  margin: 0 10px;
 }
 
-main {
-  background: url('images/bg02.jpg');
+main h1{
+  font-size: 28px;
+  font-weight: 300;
+  text-align: center;
+}
+
+main h2{
+  font-size: 24px;
+  font-weight: 300;
+}
+main h3{
+  font-size: 20px;
+  font-weight: 300;
+}
+
+main p{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  text-align: justify;
 }
 
 .flex {
@@ -109,3 +156,133 @@ main {
 }
 
 
+
+nav>ul>li {
+    padding: 0 5px;
+    display: inline-block;
+    position: relative
+}
+
+nav>ul>li>ul {
+    display: none;
+    position: absolute;
+    background: url('images/bg01.jpg');
+    opacity: 0.9;
+    width: 250px;
+    border-radius: 3px;
+    z-index: 5;
+}
+
+nav>ul>li>ul>li {
+    padding: 6px 10px
+}
+
+nav>ul>li>ul>li>ul {
+    display: none;
+    position: absolute;
+    background-color: white;
+    opacity: 0.9;
+    width: 250px;
+    border-radius: 0 3px 3px;
+    left: 250px;
+    top: 20px
+}
+
+nav>ul>li>ul>li>ul>li {
+    padding: 6px 10px
+}
+
+nav>ul>li>ul.sub:hover {
+    border-radius: 0 3px
+}
+
+nav>ul>li:hover>ul {
+    display: block
+}
+
+nav>ul>li:hover>ul>li:hover>ul {
+    display: block
+}
+
+
+.cards {
+  display: flex;
+  flex-flow: wrap;
+  /*font-family: 'Montserrat', sans-serif;*/
+}
+
+.cards .card {
+    box-sizing: border-box;
+    flex: 1;
+    height: 230px;
+    min-width: 350px;
+    background-size:cover;
+    text-align: center;
+    padding-top: 95px;
+    margin: 10px;
+    font-size: 32px;
+    font-weight: 200;
+  }
+.engineer .resume{
+  white-space: pre-wrap;
+}
+.engineer .portrait img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.engineer .portrait {
+  float: left;
+  margin-right: 10px;
+  height: 300px;
+  width: 200px;
+}
+
+.home {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.home .swiper-container  {
+  /*margin-top: -44px;*/
+}
+
+.home .content .swiper-top {
+  width: 350px;
+  height: 350px;
+}
+
+.home .content .text-top {
+  white-space: pre-wrap;
+  width: 850px;
+  padding-right: 15px;
+}
+
+.home .content .text-bottom {
+  flex: 1;
+  white-space: pre-wrap;
+}
+
+.home .content .swiper-bottom {
+  flex: 1;
+  height: 350px;
+}
+
+.swiper-slide {
+  background-size: contain !important;
+  background-repeat: no-repeat;
+  background-position: 0 50px !important;
+}
+
+.home .content {
+  display: flex;
+}
+
+.home .content:nth-child(2n) {
+  flex-direction: row-reverse;
+}
+
+.home .content:nth-child(2n+1) .text-bottom {
+  padding-right: 15px;
+}
+.home .content:nth-child(2n) .text-bottom {
+  padding-left: 15px;
+}

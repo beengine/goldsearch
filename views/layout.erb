@@ -4,26 +4,52 @@
   <title>Gold Search</title>
   <meta content="width=device-width" name="viewport" />
   <link href="/style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 </head>
 <body>
-  <header>
-    <nav>
-     <ul class="content">
-        <li class="title">
-        <a href="/">Gold Search</a>
-        </li>
-        <li>
-          <!-- <a href="/team">Команда</a> -->
-          <a href="/admin">Admin</a>
-        </li>
-       <!--  <li>
-          <a href="/ua">UA</a>
-          <a href="/ru">RU</a>
-          <a href="/en">EN</a>
-        </li> -->
-     </ul> 
-    </nav>
+  <header class="top">
+    <div class="content">
+      <a href="mailto:notebooc@gmail.com">notebooc@gmail.com</a>
+      <a href="tel:+380964538453">+380 96 453 8 453</a>
+      <a href="tel:+380735070111">+380 73 5070 111</a>
+    </div>
+  </header>
+  <header class="bottom">
+    <div class="content">
+      <div class="title">
+        <a href="<%= locale[:home_link] %>">Gold Search</a>
+      </div>
+      <nav>
+        <ul>
+          <% nav.where(parent_id: nil, lang: lang).each do |article| %>
+            <li><a href="/<%= article[:slug] %>"><%= article[:title] %></a>
+              <ul class="sub">
+                <% nav.where(parent_id: article[:id]).each do |article_1| %>
+                <li><a href="<%= article_1[:slug] %>"><%= article_1[:title] %></a></li>
+                <% end %>
+              </ul>
+              </li>
+            <% end %>
+            <li><a href="<%= locale[:team_link] %>"><%= locale[:header] %></a></li>
+          </ul>
+      </nav>
+      <div>
+        <a href="/">EN</a>
+        <a href="/головна">UA</a>
+        <a href="/главная">RU</a>
+      </div>
+    </div>
   </header>
   <%= yield %>
+  <div style="clear:both;"></div>
+  <footer>
+    <div class="content">
+      <span>Email: <a href="mailto:notebooc@gmail.com">notebooc@gmail.com</a></span>
+      
+      <span>Tel: <a href="tel:+380964538453">+380 96 453 8 453</a></span>
+      <span>Tel: <a href="tel:+380735070111">+380 73 5070 111</a></span>
+    </div>
+  </footer>
 </body>
 </html>

@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+a {
+  color: #000;
+  text-decoration-color: #888;
+}
+
+header {
+  border: 1px solid #888;
+  margin: 0 4px 8px 4px;
+}
+.login {
+  width: 160px;
+  margin: 0 auto;
+  border: 1px solid #888;
+  padding: 10px;
+}
+
+.login > input {
+  width: 150px;
+}
+
+.admin {
+  display: flex;
+}
+
+.admin > * {
+  flex-grow: 1;
+  border: 1px solid #888;
+  padding-left: 10px;
+  margin: 0 4px;
+}
+.article {
+  margin: 0 4px;
+  border: 1px solid #888;
+  padding: 10px;
+}

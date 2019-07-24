@@ -1,0 +1,16 @@
+<main>
+  <div class="content">
+    <h1><%= specialty[locale[:name]] %></h1>
+      <% engineers.each do |engineer| %>
+        <div class="engineer">
+          <div class="portrait">
+          <img src="<%= engineer[:image] %>">
+        </div>
+          <h2><%= engineer[:name] %></h2>
+          <h3><%= engineer[:specialty] %></h3>
+          <p class="resume"><%= engineer[:resume] %></p>
+          <a href="<%= slug %>/<%= engineer[:slug] %>">Більше >>></a>
+        </div>
+      <% end %>
+    </div>
+</main>

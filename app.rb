@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'sinatra/namespace'
+require 'sinatra/config_file'
 require 'sequel'
 require 'pg'
 require 'pry'
@@ -9,9 +10,15 @@ require 'pry'
 configure do
   DB = Sequel.connect(adapter: :postgres, database: 'gold_dev', host: 'localhost')
   LANGS = %w(анлійська українська російська)
+  TEAM_SLUGS = %w(/team /команда /наша-команда)
+  ENGINEER_SLUGS = %w(/engineer /інженер /инженер)
+  HOME_SLUGS = %w(/ /головна /главная)
   # db = URI.parse(ENV['DATABASE_URL'])
   # DB = Sequel.connect(adapter: :postgres, host: db.host, user: db.user, database: db.path[1..-1], password: db.password)
 end
+
+config_file 'translations.yml'
+enable :sessions
 
 helpers do
   def clear_params(params)
@@ -24,14 +31,34 @@ helpers do
       locals[:translations] = translations
     end
   end
+
+  def authenticate
+    redirect '/admin/login' unless session[:login]
+  end
 end
 
 namespace '/admin' do
   set :views, settings.root + '/views/admin'
+  before  { authenticate unless request.path_info == '/admin/login' }
+
   get '/?' do
-    # binding.pry
     engineers = DB['SELECT engineers.id, engineers.image, engineer_translations.name, engineer_translations.lang FROM engineers LEFT OUTER JOIN engineer_translations ON engineer_translations.engineer_id = engineers.id'].all.group_by{ |tr| tr[:id] }
-    erb :home, locals: { articles: DB[:articles], engineers: engineers, specialties: DB[:specialties] }
+    erb :home, locals: { articles: DB[:articles], engineers: engineers, specialties: DB[:specialties], sliders: DB[:sliders] }
+  end
+
+  get '/login' do
+    redirect '/admin' if session[:login]
+    erb :login
+  end
+
+  post '/login' do
+    session[:login] = true if params[:password] == ENV["PASSWORD"]
+    redirect '/admin'
+  end
+
+  get '/logout' do
+    session[:login] = false
+    redirect '/'
   end
 
   get '/article' do
@@ -81,7 +108,6 @@ namespace '/admin' do
       specialties: DB[:specialties]
     }
     get_translations(locals, params[:id])
-    # binding.pry
     erb :engineer, locals: locals
   end
 
@@ -125,18 +151,73 @@ namespace '/admin' do
       erb :engineer_translation, locals: locals
     end
   end
+
+  get '/slider' do
+    locals = {
+      slider: DB[:sliders].where(id: params[:id]).first || {},
+      error: nil
+    }
+    erb :slider, locals: locals
+  end
+
+  post '/slider' do
+    begin
+      if params[:id].empty?
+        params[:id] = DB[:sliders].insert(clear_params(params[:slider]))
+      else
+        DB[:sliders].where(id: params[:id]).update(clear_params(params[:slider]))
+      end
+      redirect "/admin"
+    rescue Sequel::Error => e
+      erb :slider, locals: { error: e, slider: params[:slider] }
+    end
+  end
 end
 
-
-get '/' do
-  # slim :home, layout: false, locals: { l: settings.ua }
-  erb :home, locals: { articles: DB[:articles] }
+HOME_SLUGS.each_with_index do |slug, lang|
+  get slug do
+    erb :home, locals: { sliders: DB[:sliders].order(:id),
+                         nav: DB[:articles].where(lang: lang).order(:id),
+                         lang: lang,
+                         locale: settings.langs[lang] }
+  end
 end
 
-get '/team' do
-  erb :team
+TEAM_SLUGS.each_with_index do |slug, lang|
+  get slug do
+    erb :team, locals: { nav: DB[:articles].where(lang: lang).order(:id),
+                         lang: lang,
+                         locale: settings.langs[lang],
+                         specialties: DB[:specialties],
+                         slug: slug }
+  end
+
+  get "#{slug}/:specialty" do
+    specialty = DB[:specialties].where(settings.langs[lang][:slug] => params[:specialty]).first
+    engineers = DB[:engineers].join(:engineer_translations, engineer_id: :id).where(lang: lang, specialty_id: specialty[:id])
+    erb :specialty, locals: { locale: settings.langs[lang],
+                              lang: lang,
+                              specialty: specialty,
+                              engineers: engineers,
+                              nav: DB[:articles].where(lang: lang).order(:id),
+                              slug: ENGINEER_SLUGS[lang] }
+  end
+end
+
+ENGINEER_SLUGS.each_with_index do |slug, lang|
+  get "#{slug}/:engineer" do
+    engineer = DB[:engineers].join(:engineer_translations, engineer_id: :id).where(lang: lang, slug: params[:engineer]).first
+    erb :engineer, locals: { locale: settings.langs[lang],
+                             lang: lang,
+                             engineer: engineer,
+                             nav: DB[:articles].where(lang: lang).order(:id),
+                             slug: slug }
+  end
 end
 
 get '/:slug' do
-  erb :article, locals: { article: DB[:articles].where(slug: params[:slug]).first }
+  params[:slug] ||= ''
+  article = DB[:articles].where(slug: params[:slug]).first
+  lang = article[:lang]
+  erb :article, locals: { article: article, nav: DB[:articles].where(lang: lang).order(:id), locale: settings.langs[lang], lang: lang }
 end

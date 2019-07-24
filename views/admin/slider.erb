@@ -1,0 +1,28 @@
+<div class="article">
+  <h2>Блок головної сторінки</h2>
+  <p style="color: red;"><%= error %></p>
+  <form action="/admin/slider" method="post">
+    <input type="hidden" name='id' value="<%= slider[:id] %>">
+    <input type="hidden" role="uploadcare-uploader" name="slider[image_1]" value="<%= slider[:image_1] %>" data-images-only="true" data-crop="16:9">
+    <br>
+    <input type="hidden" role="uploadcare-uploader" name="slider[image_2]" value="<%= slider[:image_2] %>" data-images-only="true" data-crop="16:9">
+    <br>
+    <input type="hidden" role="uploadcare-uploader" name="slider[image_3]" value="<%= slider[:image_3] %>" data-images-only="true" data-crop="16:9">
+    <br>
+    <input type="hidden" role="uploadcare-uploader" name="slider[image_4]" value="<%= slider[:image_4] %>" data-images-only="true" data-crop="16:9">
+    <br>
+    <input type="hidden" role="uploadcare-uploader" name="slider[image_5]" value="<%= slider[:image_5] %>" data-images-only="true" data-crop="16:9">
+    <br>
+    <br>
+    <label>Текст англійською</label>
+    <textarea name="slider[text_en]"><%= slider[:text_en] %></textarea>
+    <br>
+    <label>Текст українською</label>
+    <textarea name="slider[text_ua]"><%= slider[:text_ua] %></textarea>
+    <br>
+    <label>Текст російською</label>
+    <textarea name="slider[text_ru]"><%= slider[:text_ru] %></textarea>
+    <br>
+    <button type="submit">Зберегти</button>
+  </form>
+</div>

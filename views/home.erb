@@ -1,34 +1,59 @@
-<main>
-  <% articles.each do |article| %>
-  <p>
-    <a href="/<%= article[:slug] %>">
-      <%= article[:title] %>
-      </span>
-    </a>
-  </p>
-<% end %>
-<!--   <div class="content">
-    <section class="flex">
-      <div class="img">
-        <img src="/images/oa-premises.jpg">
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    var mySwiper = new Swiper ('.swiper-container', {
+      loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      }
+    })
+  })
+</script>
+<main class="home">
+  <div class="content">
+    <div class="text-top">
+      <%= sliders.first[locale[:text]] %>
+    </div>
+    <div class="swiper-container swiper-top">
+      <div class="swiper-wrapper">
+          <div class="swiper-slide" style="background-image: url('<%= sliders.first[:image_1] %>')"></div>
+          <% if sliders.first[:image_2] %>
+            <div class="swiper-slide" style="background-image: url('<%= sliders.first[:image_2] %>')"></div>
+          <% end %>
+          <% if sliders.first[:image_3] %>
+            <div class="swiper-slide" style="background-image: url('<%= sliders.first[:image_3] %>')"></div>
+          <% end %>
+          <% if sliders.first[:image_4] %>
+            <div class="swiper-slide" style="background-image: url('<%= sliders.first[:image_4] %>')"></div>
+          <% end %>
+          <% if sliders.first[:image_5] %>
+            <div class="swiper-slide" style="background-image: url('<%= sliders.first[:image_5] %>')"></div>
+          <% end %>
       </div>
-      <div class="img">
-        <img src="/images/oa-premises.jpg">
+    </div>
+  </div>
+  <% sliders.all[1..-1].each do |slider| %>
+    <div class="content">
+      <div class="text-bottom">
+        <%= slider[locale[:text]] %>
       </div>
-      <div class="img">
-        <img src="/images/oa-premises.jpg">
+      <div class="swiper-container swiper-bottom">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" style="background-image: url('<%= slider[:image_1] %>')"></div>
+          <% if slider[:image_2] %>
+            <div class="swiper-slide" style="background-image: url('<%= slider[:image_2] %>')"></div>
+          <% end %>
+          <% if slider[:image_3] %>
+            <div class="swiper-slide" style="background-image: url('<%= slider[:image_3] %>')"></div>
+          <% end %>
+          <% if slider[:image_4] %>
+            <div class="swiper-slide" style="background-image: url('<%= slider[:image_4] %>')"></div>
+          <% end %>
+          <% if slider[:image_5] %>
+            <div class="swiper-slide" style="background-image: url('<%= slider[:image_5] %>')"></div>
+          <% end %>
+        </div>
       </div>
-    </section>
-    <section class="flex">
-      <div class="img">
-        Hi guys, some text here! Hi guys, some text here! Hi guys, some text here!
-      </div>
-      <div class="img">
-        Hi guys, some text here! Hi guys, some text here! Hi guys, some text here!
-      </div>
-      <div class="img">
-        Hi guys, some text here! Hi guys, some text here! Hi guys, some text here!
-      </div>
-    </section>
-  </div> -->
+    </div>
+  <% end %>
 </main>
