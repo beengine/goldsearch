@@ -4,7 +4,6 @@ require 'sinatra/namespace'
 require 'sinatra/config_file'
 require 'sequel'
 require 'pg'
-require 'pry'
 
 
 configure do
