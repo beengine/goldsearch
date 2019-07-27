@@ -1,9 +1,9 @@
 require 'sequel'
 require 'pg'
 
-# db = URI.parse(ENV['DATABASE_URL'])
-# DB = Sequel.connect(adapter: :postgres, host: db.host, user: db.user, database: db.path[1..-1], password: db.password)
-DB = Sequel.connect(adapter: :postgres, database: 'gold_dev', host: 'localhost')
+db = URI.parse(ENV['DATABASE_URL'])
+DB = Sequel.connect(adapter: :postgres, host: db.host, user: db.user, database: db.path[1..-1], password: db.password)
+# DB = Sequel.connect(adapter: :postgres, database: 'gold_dev', host: 'localhost')
 
 DB.create_table :articles do
   primary_key :id
@@ -41,6 +41,7 @@ DB.create_table :engineers do
   primary_key :id
   foreign_key :specialty_id, null: false
   String :image
+  Integer :birthday, null: false
 end
 
 DB.create_table :engineer_translations do
@@ -55,12 +56,6 @@ DB.create_table :engineer_translations do
 end
 
 #seed
-
-# DB[:articles].insert(title: 'Головна', body: '<h2>Це головна сторінка, вітання!</h2>', lang: 1, slug: 'головна')
-# DB[:articles].insert(title: 'Main', body: '<h2>Here is the main page, congrats!</h2>', lang: 0)
-# DB[:articles].insert(title: 'Главная', slug: 'главная', body: '<h2>Это заглавная страница, мое почтение, уважаемый господин!</h2>', lang: 2)
-
-DB[]
 
 gold_uk = DB[:articles].insert(title: 'Золото', slug: 'золото', body: '<h2>Текст про золото</h2>', lang: 1)
 DB[:articles].insert(title: 'Корінне Золото', slug: 'корінне-золото', body: '<h2>Текст про корінне золото</h2>', lang: 1, parent_id: gold_uk)
@@ -99,6 +94,7 @@ surveyors = DB[:specialties].insert(image: 'https://ucarecdn.com/6d6970b9-402c-4
                                      slug_en: 'surveyors', slug_ua: 'геодезисти', slug_ru: 'геодезисты')
 
 pavliuk = DB[:engineers].insert(specialty_id: geologists,
+                                birthday: 1964,
                                 image: 'https://ucarecdn.com/1d704c99-7f79-414e-8423-9225eb6d821b/43118639_1983835685248129_1788644768185452739_n.jpg')
 
 pavliuk_en = DB[:engineer_translations].insert(engineer_id: pavliuk,
@@ -106,19 +102,19 @@ pavliuk_en = DB[:engineer_translations].insert(engineer_id: pavliuk,
                                                slug: 'pavliuk',
                                                name: 'Vasyl Pavliuk',
                                                specialty: 'Head of geological department for oil and gas, chief geologist',
-                                               resume: "55 years, 40 years of experience\nThere is some text",
+                                               resume: "40 years of experience\nThere is some text",
                                                desc: '<p>Some text here</p>')
 pavliuk_ua = DB[:engineer_translations].insert(engineer_id: pavliuk,
                                                lang: 1,
                                                slug: 'павлюк',
                                                name: 'Павлюк Василь Іванович',
                                                specialty: 'Начальник геологічного відділу з нафти і газу, головний геолог',
-                                               resume: "55 років, 40 років досвіду\nТут трохи тексту",
+                                               resume: "40 років досвіду\nТут трохи тексту",
                                                desc: '<p>Тут трохи тексту</p>')
 pavliuk_ru = DB[:engineer_translations].insert(engineer_id: pavliuk,
                                                lang: 2,
                                                slug: 'павлюк',
                                                name: 'Павлюк Василий Иванович',
                                                specialty: 'Начальник геологического отдела с нефти и газа, главный геолог',
-                                               resume: "55 лет, 40 лет опыта\nТут немного текста",
+                                               resume: "40 лет опыта\nТут немного текста",
                                                desc: '<p>Тут немного текста</p>')

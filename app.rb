@@ -8,13 +8,13 @@ require 'pry'
 
 
 configure do
-  DB = Sequel.connect(adapter: :postgres, database: 'gold_dev', host: 'localhost')
+  # DB = Sequel.connect(adapter: :postgres, database: 'gold_dev', host: 'localhost')
   LANGS = %w(анлійська українська російська)
   TEAM_SLUGS = %w(/team /команда /наша-команда)
   ENGINEER_SLUGS = %w(/engineer /інженер /инженер)
   HOME_SLUGS = %w(/ /головна /главная)
-  # db = URI.parse(ENV['DATABASE_URL'])
-  # DB = Sequel.connect(adapter: :postgres, host: db.host, user: db.user, database: db.path[1..-1], password: db.password)
+  db = URI.parse(ENV['DATABASE_URL'])
+  DB = Sequel.connect(adapter: :postgres, host: db.host, user: db.user, database: db.path[1..-1], password: db.password)
 end
 
 config_file 'translations.yml'
@@ -34,6 +34,17 @@ helpers do
 
   def authenticate
     redirect '/admin/login' unless session[:login]
+  end
+
+  def human_age(birthday, lang)
+    age = Time.new.year - birthday
+    if age % 10 == 1
+      "#{age} #{settings.langs[lang][:year]}"
+    elsif (age - 1) % 10 < 4
+      "#{age} #{settings.langs[lang][:years]}"
+    else
+      "#{age} #{settings.langs[lang][:yearss]}"
+    end
   end
 end
 

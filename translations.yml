@@ -5,15 +5,24 @@ langs:
     name: :name_en
     slug: :slug_en
     text: :text_en
+    year: years
+    years: years
+    yearss: years
   - header: Команда
     home_link: /головна
     team_link: /команда
     name: :name_ua
     slug: :slug_ua
     text: :text_ua
+    year: рік
+    years: роки
+    yearss: років
   - header: Команда
     home_link: /главная
     team_link: /наша-команда
     name: :name_ru
     slug: :slug_ru
     text: :text_ru
+    year: год
+    years: года
+    yearss: лет

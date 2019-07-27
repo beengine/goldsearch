@@ -14,6 +14,9 @@
       <% end %>
     </select>
     <br>
+    <label>Рік народження</label>
+    <input type="number" name="engineer[birthday]" min="1950" max="2000" value="<%= engineer[:birthday] %>">
+    <br>
     <br>
     <button type="submit">Зберегти</button>
   </form>
