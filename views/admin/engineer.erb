@@ -12,7 +12,7 @@
         <label>Рік народження</label>
       </div>
       <div class="col">
-        <input type="hidden" role="uploadcare-uploader" name="engineer[image]" value="<%= engineer[:image] %>" data-images-only="true">
+        <input type="hidden" role="uploadcare-uploader" name="engineer[image]" value="<%= engineer[:image] %>" data-images-only="true" data-crop="3:4">
         <br>
         <select name="engineer[specialty_id]">
           <% specialties.each do |specialty| %>

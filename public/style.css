@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans|Yanone+Kaffeesatz:400,300,200");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700|Yanone+Kaffeesatz:400,300,200");
 /* css reset */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -251,8 +251,25 @@ nav>ul>li:hover>ul>li:hover>ul {
 .engineer .portrait {
   float: left;
   margin-right: 10px;
-  height: 300px;
-  width: 200px;
+  height: 280px;
+  width: 210px;
+}
+
+main .engineer a, main .arcticle a {
+  color: #bbb;
+  text-decoration: underline;
+}
+
+main .engineer a:hover, main .arcticle a:hover {
+  color: #fff;
+}
+
+main em {
+  font-style: italic;
+}
+
+main strong {
+  font-weight: 700;
 }
 
 .home {
