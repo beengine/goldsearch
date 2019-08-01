@@ -74,10 +74,12 @@ a {
 
 header div.content {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   font-weight: 200;
   font-size: 2.25em;
   color: #c6c8c8;
+  padding: 5px 20px;
 }
 header.top {
   position: fixed;
@@ -105,6 +107,22 @@ nav ul li{
 nav ul li.title a {
   font-weight: 300;
   color: #fff;
+}
+
+.title a .text {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.title a .text .main{
+  margin-top: -16px;
+}
+
+.title a .text .sub{
+  font-size: 0.4em;
+  margin-top: -10px;
+  vertical-align: sub;
+  text-align: center;
 }
 
 .content {
@@ -264,6 +282,12 @@ nav>ul>li:hover>ul>li:hover>ul {
 .home .content .swiper-bottom {
   flex: 1;
   height: 350px;
+}
+header.bottom img {
+  height: 75px;
+  width: 75px;
+  margin-bottom: -23px;
+  margin-top: -8px;
 }
 
 .swiper-slide {

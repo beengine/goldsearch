@@ -14,15 +14,30 @@
     <input type="hidden" role="uploadcare-uploader" name="slider[image_5]" value="<%= slider[:image_5] %>" data-images-only="true" data-crop="16:9">
     <br>
     <br>
-    <label>Текст англійською</label>
-    <textarea name="slider[text_en]"><%= slider[:text_en] %></textarea>
-    <br>
-    <label>Текст українською</label>
-    <textarea name="slider[text_ua]"><%= slider[:text_ua] %></textarea>
-    <br>
-    <label>Текст російською</label>
-    <textarea name="slider[text_ru]"><%= slider[:text_ru] %></textarea>
-    <br>
+    <div class="two-col">
+      <div class="first-col">
+        <label>Текст англійською</label>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <label>Текст українською</label>
+        <br>
+        <br>
+        <br>
+        <br>
+        <label>Текст російською</label>
+      </div>
+      <div class="col">
+        <textarea rows="6" cols="50" name="slider[text_en]"><%= slider[:text_en] %></textarea>
+        <br>
+        <textarea rows="6" cols="50" name="slider[text_ua]"><%= slider[:text_ua] %></textarea>
+        <br>
+        <textarea rows="6" cols="50" name="slider[text_ru]"><%= slider[:text_ru] %></textarea>
+        <br>
+      </div>
+    </div>
     <button type="submit">Зберегти</button>
   </form>
 </div>

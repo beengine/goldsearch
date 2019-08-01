@@ -2,28 +2,48 @@
   <p style="color: red;"><%= error %></p>
   <form action="/admin/specialty" method="post">
     <input type="hidden" name='id' value="<%= specialty[:id] %>">
-    <label>Зображення</label>
-    <input type="hidden" role="uploadcare-uploader" name="specialty[image]" value="<%= specialty[:image] %>" data-images-only="true">
-      <h4>Адреса</h4>
-      <label>аглійською</label>
-      <input type="text" name="specialty[slug_en]" value="<%= specialty[:slug_en] %>">
-      <br>
-      <label>українською</label>
-      <input type="text" name="specialty[slug_ua]" value="<%= specialty[:slug_ua] %>">
-      <br>
-      <label>російською</label>
-      <input type="text" name="specialty[slug_ru]" value="<%= specialty[:slug_ru] %>">
-      <br>
-      <h4>Назва</h4>
-      <label>аглійською</label>
-      <input type="text" name="specialty[name_en]" value="<%= specialty[:name_en] %>">
-      <br>
-      <label>українською</label>
-      <input type="text" name="specialty[name_ua]" value="<%= specialty[:name_ua] %>">
-      <br>
-      <label>російською</label>
-      <input type="text" name="specialty[name_ru]" value="<%= specialty[:name_ru] %>">
-      <br>
-      <button type="submit">Зберегти</button>
+    <div class="two-col">
+      <div class="first-col">
+        <label>Зображення</label>
+      </div>
+      <div class="col">
+        <input type="hidden" role="uploadcare-uploader" name="specialty[image]" value="<%= specialty[:image] %>" data-images-only="true">
+      </div>
+    </div>
+    <h4>Адреса</h4>
+    <div class="two-col">
+      <div class="first-col">
+        <label>аглійською</label>
+        <br>
+        <label>українською</label>
+        <br>
+        <label>російською</label>
+      </div>
+      <div class="col">
+        <input type="text" name="specialty[slug_en]" value="<%= specialty[:slug_en] %>">
+        <br>
+        <input type="text" name="specialty[slug_ua]" value="<%= specialty[:slug_ua] %>">
+        <br>
+        <input type="text" name="specialty[slug_ru]" value="<%= specialty[:slug_ru] %>">
+      </div>
+    </div>
+    <h4>Назва</h4>
+    <div class="two-col">
+      <div class="first-col">
+        <label>аглійською</label>
+        <br>
+        <label>українською</label>
+        <br>
+        <label>російською</label>
+      </div>
+      <div class="col">
+        <input type="text" name="specialty[name_en]" value="<%= specialty[:name_en] %>">
+        <br>
+        <input type="text" name="specialty[name_ua]" value="<%= specialty[:name_ua] %>">
+        <br>
+        <input type="text" name="specialty[name_ru]" value="<%= specialty[:name_ru] %>">
+      </div>
+    </div>
+    <button type="submit">Зберегти</button>
   </form>
 </div>

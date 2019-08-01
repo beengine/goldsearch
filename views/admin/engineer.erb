@@ -3,21 +3,26 @@
   <p style="color: red;"><%= error %></p>
   <form action="/admin/engineer" method="post">
     <input type="hidden" name='id' value="<%= engineer[:id] %>">
-    <label>Фото</label>
-    <input type="hidden" role="uploadcare-uploader" name="engineer[image]" value="<%= engineer[:image] %>" data-images-only="true">
-    <br>
-    <br>
-    <label>Спеціальність</label>
-    <select name="engineer[specialty_id]">
-      <% specialties.each do |specialty| %>
-        <option value="<%= specialty[:id] %>" <%= 'selected' if specialty[:id]==engineer[:specialty_id] %>><%= specialty[:name_ua] %></option>
-      <% end %>
-    </select>
-    <br>
-    <label>Рік народження</label>
-    <input type="number" name="engineer[birthday]" min="1950" max="2000" value="<%= engineer[:birthday] %>">
-    <br>
-    <br>
+        <div class="two-col">
+      <div class="first-col">
+        <label>Фото</label>
+        <br>
+        <label>Спеціальність</label>
+        <br>
+        <label>Рік народження</label>
+      </div>
+      <div class="col">
+        <input type="hidden" role="uploadcare-uploader" name="engineer[image]" value="<%= engineer[:image] %>" data-images-only="true">
+        <br>
+        <select name="engineer[specialty_id]">
+          <% specialties.each do |specialty| %>
+            <option value="<%= specialty[:id] %>" <%= 'selected' if specialty[:id]==engineer[:specialty_id] %>><%= specialty[:name_ua] %></option>
+          <% end %>
+        </select>
+        <br>
+        <input type="number" name="engineer[birthday]" min="1950" max="2000" value="<%= engineer[:birthday] %>">
+      </div>
+    </div>
     <button type="submit">Зберегти</button>
   </form>
   <br>
@@ -27,15 +32,20 @@
     <h2>Переклади</h2>
     <% LANGS.each_with_index do |lang, code| %>
       <% if translation = translations.where(lang: code).first %>
-        <p>
-          <strong><%= lang %>:</strong> 
-          <strong>Ім'я:</strong> <%= translation[:name] %>
-          <strong>Адреса:</strong> <%= translation[:slug] %>
-          <strong>Спеціальність:</strong> <%= translation[:specialty] %>
+        <div class="two-col">
+          <div class="first-col">
+            <strong><%= lang %></strong>
+          </div>
+          <div class="col">
+          <strong>Ім'я:</strong> <%= translation[:name] %><br>
+          <strong>Адреса:</strong> <%= translation[:slug] %><br>
+          <strong>Спеціальність:</strong> <%= translation[:specialty] %><br>
           <strong>Резюме:</strong> <%= translation[:resume] %>
           <br>
-          <a href="/admin/engineer_translation?id=<%= translation[:id] %>">Редагувати переклад</a>
-        </p>
+          <a class="button" href="/admin/engineer_translation?id=<%= translation[:id] %>">Редагувати переклад</a>
+          </div>
+        </div>
+        <br>
       <% else %>
         <p>
           <strong><%= lang %>:</strong> 
