@@ -168,6 +168,16 @@ main p{
   text-align: justify;
 }
 
+/*body main{
+  font-family: 'Open Sans', sans-serif;
+}*/
+
+body main ul li {
+  font-family: 'Open Sans', sans-serif;
+  list-style-type: circle;
+  font-size: 14px;
+}
+
 .flex {
   display: flex;
   justify-content: space-between;
