@@ -176,6 +176,7 @@ body main ul li {
   font-family: 'Open Sans', sans-serif;
   list-style-type: circle;
   font-size: 14px;
+  margin-left: 18px;
 }
 
 .flex {
@@ -270,6 +271,16 @@ main .engineer a, main .arcticle a {
   text-decoration: underline;
 }
 
+main .engineer a.more {
+    background-color: #ddd;
+    color: #555;
+    border-radius: 4px;
+    border: none;
+    padding: 4px 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 main .engineer a:hover, main .arcticle a:hover {
   color: #fff;
 }
@@ -304,6 +315,7 @@ main strong {
 .home .content .text-bottom {
   flex: 1;
   white-space: pre-wrap;
+  margin-top: 20px;
 }
 
 .home .content .swiper-bottom {

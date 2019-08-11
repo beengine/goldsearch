@@ -16,6 +16,8 @@
     <br>
     <div class="two-col">
       <div class="first-col">
+        <label>Порядок</label>
+        <br>
         <label>Текст англійською</label>
         <br>
         <br>
@@ -30,6 +32,8 @@
         <label>Текст російською</label>
       </div>
       <div class="col">
+        <input type="number" min="0" name="slider[order]" value="<%= slider[:order] %>">
+        <br>
         <textarea rows="6" cols="50" name="slider[text_en]"><%= slider[:text_en] %></textarea>
         <br>
         <textarea rows="6" cols="50" name="slider[text_ua]"><%= slider[:text_ua] %></textarea>

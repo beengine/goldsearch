@@ -186,7 +186,7 @@ end
 
 HOME_SLUGS.each_with_index do |slug, lang|
   get slug do
-    erb :home, locals: { sliders: DB[:sliders].order(:id),
+    erb :home, locals: { sliders: DB[:sliders].order(:order),
                          nav: DB[:articles].where(lang: lang).order(:id),
                          lang: lang,
                          locale: settings.langs[lang] }

@@ -9,7 +9,7 @@
           <h2><%= engineer[:name] %></h2>
           <h3><%= engineer[:specialty] %></h3>
           <p class="resume"><%= "#{human_age(engineer[:birthday], lang)}, #{engineer[:resume]}" %></p>
-          <a href="<%= slug %>/<%= engineer[:slug] %>"><%= locale[:more] %></a>
+          <a class="more" href="<%= slug %>/<%= engineer[:slug] %>"><%= locale[:more] %></a>
         </div>
       <% end %>
     </div>

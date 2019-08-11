@@ -8,7 +8,7 @@ langs:
     year: years
     years: years
     yearss: years
-    more: More >>>
+    more: More
   - header: Команда
     home_link: /головна
     team_link: /команда
@@ -18,7 +18,7 @@ langs:
     year: рік
     years: роки
     yearss: років
-    more: Більше >>>
+    more: Більше
   - header: Команда
     home_link: /главная
     team_link: /наша-команда
@@ -28,4 +28,4 @@ langs:
     year: год
     years: года
     yearss: лет
-    more: Больше >>>
+    more: Больше
