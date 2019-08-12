@@ -10,6 +10,8 @@
         <label>Спеціальність</label>
         <br>
         <label>Рік народження</label>
+        <br>
+        <label>Порядок</label>
       </div>
       <div class="col">
         <input type="hidden" role="uploadcare-uploader" name="engineer[image]" value="<%= engineer[:image] %>" data-images-only="true" data-crop="3:4">
@@ -21,6 +23,8 @@
         </select>
         <br>
         <input type="number" name="engineer[birthday]" min="1950" max="2000" value="<%= engineer[:birthday] %>">
+        <br>
+        <input type="number" min="0" name="engineer[order]" value="<%= engineer[:order] %>">
       </div>
     </div>
     <button type="submit">Зберегти</button>

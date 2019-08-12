@@ -252,6 +252,14 @@ nav>ul>li:hover>ul>li:hover>ul {
     font-size: 32px;
     font-weight: 200;
   }
+
+.engineer:after {
+  content: '';
+  display: block;
+  clear: both;
+  height: 10px;
+}
+
 .engineer .resume{
   white-space: pre-wrap;
 }

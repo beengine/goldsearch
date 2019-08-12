@@ -204,7 +204,7 @@ TEAM_SLUGS.each_with_index do |slug, lang|
 
   get "#{slug}/:specialty" do
     specialty = DB[:specialties].where(settings.langs[lang][:slug] => params[:specialty]).first
-    engineers = DB[:engineers].join(:engineer_translations, engineer_id: :id).where(lang: lang, specialty_id: specialty[:id])
+    engineers = DB[:engineers].join(:engineer_translations, engineer_id: :id).where(lang: lang, specialty_id: specialty[:id]).order(:order)
     erb :specialty, locals: { locale: settings.langs[lang],
                               lang: lang,
                               specialty: specialty,
