@@ -184,6 +184,10 @@ namespace '/admin' do
   end
 end
 
+get '/sitemap.xml' do
+  send_file 'public/sitemap.xml'
+end
+
 HOME_SLUGS.each_with_index do |slug, lang|
   get slug do
     erb :home, locals: { sliders: DB[:sliders].order(:order),
