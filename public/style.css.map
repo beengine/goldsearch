@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "stdin.css",
+	"sources": [
+		"stdin"
+	],
+	"sourcesContent": [
+		"@import url(\"https://fonts.googleapis.com/css?family=Open+Sans:400,700|Yanone+Kaffeesatz:400,300,200\");\nbody {\n  font-family: 'Open Sans', sans-serif;\n  color: #fff;\n  background: url('images/bg02.jpg');\n}\n\nheader, footer {\n  font-family: 'Yanone Kaffeesatz', sans-serif;\n}\n.bg01 {\n  background: url('images/bg02.jpg');\n}\n\n.bg02 {\n  background: url('images/bg01.jpg');\n}\n\n.dropdown-window {\n  display: none;\n  position: absolute;\n  opacity: 0.9;\n  border-radius: 3px;\n  z-index: 5;\n}\n.dropdown:hover > .dropdown-window {\n  display: block;\n}\n\n.logo {\n  height: 70px;\n  width: 70px;\n}\n\n.moto {\n  padding-left: 70px;\n}\n\nh1 {\n  font-family: 'Yanone Kaffeesatz', sans-serif;\n  font-size: 28px;\n  font-weight: 300;\n  text-align: center;\n}\n\nmain img {\n  padding: 7px;\n}\n\n.cc {\n  max-width: 1260px;\n  padding: 0 5px;\n}\n\n.swiper-slide {\n  background-size: contain !important;\n  background-repeat: no-repeat;\n  background-position: 0 50px !important;\n}\n\n\n"
+	],
+	"names": [],
+	"mappings": "AAAA,OAAO,CAAC,8FAAI,CACZ,AAAA,IAAI,AAAC,CACH,WAAW,CAAE,uBAAuB,CACpC,KAAK,CAAE,IAAI,CACX,UAAU,CAAE,sBAAsB,CACnC,AAED,AAAA,MAAM,CAAE,MAAM,AAAC,CACb,WAAW,CAAE,+BAA+B,CAC7C,AACD,AAAA,KAAK,AAAC,CACJ,UAAU,CAAE,sBAAsB,CACnC,AAED,AAAA,KAAK,AAAC,CACJ,UAAU,CAAE,sBAAsB,CACnC,AAED,AAAA,gBAAgB,AAAC,CACf,OAAO,CAAE,IAAI,CACb,QAAQ,CAAE,QAAQ,CAClB,OAAO,CAAE,GAAG,CACZ,aAAa,CAAE,GAAG,CAClB,OAAO,CAAE,CAAC,CACX,AACD,AAAA,SAAS,AAAA,MAAM,CAAG,gBAAgB,AAAC,CACjC,OAAO,CAAE,KAAK,CACf,AAED,AAAA,KAAK,AAAC,CACJ,MAAM,CAAE,IAAI,CACZ,KAAK,CAAE,IAAI,CACZ,AAED,AAAA,KAAK,AAAC,CACJ,YAAY,CAAE,IAAI,CACnB,AAED,AAAA,EAAE,AAAC,CACD,WAAW,CAAE,+BAA+B,CAC5C,SAAS,CAAE,IAAI,CACf,WAAW,CAAE,GAAG,CAChB,UAAU,CAAE,MAAM,CACnB,AAED,AAAA,IAAI,CAAC,GAAG,AAAC,CACP,OAAO,CAAE,GAAG,CACb,AAED,AAAA,GAAG,AAAC,CACF,SAAS,CAAE,MAAM,CACjB,OAAO,CAAE,KAAK,CACf,AAED,AAAA,aAAa,AAAC,CACZ,eAAe,CAAE,kBAAkB,CACnC,iBAAiB,CAAE,SAAS,CAC5B,mBAAmB,CAAE,iBAAiB,CACvC"
+}

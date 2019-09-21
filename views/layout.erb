@@ -5,60 +5,67 @@
   <meta content="width=device-width" name="viewport" />
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <link href="/style.css" rel="stylesheet" type="text/css" />
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css"> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
   <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
   <meta name="description" content="<%= locale[:description] %>" />
 </head>
 <body>
-  <header class="top">
-    <div class="content">
-      <a href="mailto:notebooc@gmail.com">notebooc@gmail.com</a>
-      <a href="tel:+380964538453">+380 96 453 8 453</a>
-      <a href="tel:+380735070111">+380 73 5070 111</a>
+  <header class="bg01 hidden md:block bottom-0 inset-x-0 py-3 md:py-0">
+    <div class="container flex mx-auto font-thin text-xl text-center">
+      <a class="flex-1 hover:text-gray-500" href="mailto:notebooc@gmail.com">notebooc@gmail.com</a>
+      <a class="flex-1 hover:text-gray-500" href="tel:+380964538453">+380 96 453 8 453</a>
+      <a class="flex-1 hover:text-gray-500" href="tel:+380735070111">+380 73 5070 111</a>
     </div>
   </header>
-  <header class="bottom">
-    <div class="content">
-      <div class="title">
+  <header class="bg02 text-3xl md:text-3xl lg:text-4xl">
+    <div class="flex items-center justify-between mx-auto font-thin cc">
+      <div class="relative">
         <a href="<%= locale[:home_link] %>">
-          <img src="/images/logo.png">
-          <div class="text">
-            <div class="main">Gold Search</div>
-            <div class="sub">Mente Et Malleo</div>
+          <img class="inline-block absolute h-16 w-16 mt-1 lg:mt-2" src="/images/logo.png">
+          <div class="inline-block moto">
+            <div class="text-center">Gold Search</div>
+            <div class="text-sm text-center">Mente Et Malleo</div>
           </div>
         </a>
       </div>
-      <nav>
-        <ul>
+      <nav class="hidden sm:block">
           <% nav.where(parent_id: nil, lang: lang).each do |article| %>
-            <li><a href="/<%= article[:slug] %>"><%= article[:title] %></a>
-              <ul class="sub">
+            <div class="dropdown inline-block">
+              <a href="/<%= article[:slug] %>"><%= article[:title] %></a>
+              <div class="dropdown-window bg02 p-2 pt-0">
                 <% nav.where(parent_id: article[:id]).each do |article_1| %>
-                <li><a href="<%= article_1[:slug] %>"><%= article_1[:title] %></a></li>
+                  <a class="block rounded hover:bg-gray-900" href="<%= article_1[:slug] %>"><%= article_1[:title] %></a>
                 <% end %>
-              </ul>
-              </li>
-            <% end %>
-            <li><a href="<%= locale[:team_link] %>"><%= locale[:header] %></a></li>
-          </ul>
+              </div>
+            </div>
+          <% end %>
+          <a href="<%= locale[:team_link] %>"><%= locale[:header] %></a>
       </nav>
-      <div>
+      <div class="text-right">
         <a href="/">EN</a>
         <a href="/головна">UA</a>
         <a href="/главная">RU</a>
       </div>
+      <div class="dropdown sm:hidden">
+        <button type="button" class="pr-3">
+          &#9776;
+        </button>
+        <div class="dropdown-window bg02 p-2 pt-0 right-0">
+          <% nav.where(parent_id: nil, lang: lang).each do |article| %>
+            <a class="block rounded hover:bg-gray-900" href="/<%= article[:slug] %>"><%= article[:title] %></a>
+          <% end %>
+          <a href="<%= locale[:team_link] %>"><%= locale[:header] %></a>
+        </div>
+      </div>
     </div>
   </header>
   <%= yield %>
-  <div style="clear:both;"></div>
-  <footer>
-    <div class="content">
-      <span>Email: <a href="mailto:notebooc@gmail.com">notebooc@gmail.com</a></span>
-      
-      <span>Tel: <a href="tel:+380964538453">+380 96 453 8 453</a></span>
-      <span>Tel: <a href="tel:+380735070111">+380 73 5070 111</a></span>
+  <div class="clearfix pb-16"></div>
+  <footer class="bg02 fixed md:static bottom-0 inset-x-0 py-3 md:py-0">
+    <div class="container flex mx-auto font-thin text-xl text-center">
+      <a class="flex-1 hover:text-gray-500" href="mailto:notebooc@gmail.com">notebooc@gmail.com</a>
+      <a class="flex-1 hover:text-gray-500" href="tel:+380964538453">+380 96 453 8 453</a>
+      <a class="flex-1 hover:text-gray-500 hidden md:block" href="tel:+380735070111">+380 73 5070 111</a>
     </div>
   </footer>
 </body>
