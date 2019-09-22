@@ -1,14 +1,14 @@
 <main>
-  <div class="container mx-auto cc">
+  <div class="sp-font bg02 rounded shadow-lg my-2 mx-2 xl:mx-auto cc">
     <h1><%= locale[:header] %></h1>
-    <div class="flex flex-wrap justify-center">
-      <% specialties.each do |specialty| %>
-        <div class="flex-1 bg-cover py-20 m-3 text-center max-w-sm" style="min-width:350px; background-image: url('<%= specialty[:image] %>')">
-          <a href="<%= slug %>/<%= specialty[locale[:slug]] %>">
-            <%= specialty[locale[:name]] %>
-          </a>
-        </div>
-      <% end %>
-    </div>
+  </div>
+  <div class="sp-font text-3xl font-thin flex flex-wrap justify-center xl:mx-auto ccc">
+    <% specialties.each do |specialty| %>
+      <div class="flex-1 rounded shadow-lg bg-cover py-20 m-2 text-center bg-center" style="min-width:350px; background-image: url('<%= specialty[:image] %>')">
+        <a href="<%= slug %>/<%= specialty[locale[:slug]] %>">
+          <%= specialty[locale[:name]] %>
+        </a>
+      </div>
+    <% end %>
   </div>
 </main>

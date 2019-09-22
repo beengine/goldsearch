@@ -1,16 +1,19 @@
 <main>
-  <div class="content">
+  <div class="sp-font bg02 rounded shadow-lg m-2 xl:mx-auto cc">
     <h1><%= specialty[locale[:name]] %></h1>
-      <% engineers.each do |engineer| %>
-        <div class="engineer">
-          <div class="portrait">
-          <img src="<%= engineer[:image] %>">
+  </div>
+  <div class="sm:flex flex-wrap justify-center xl:mx-auto ccc">
+    <% engineers.each do |engineer| %>
+      <div class="flex-1 bg02 rounded shadow-lg m-2 md:flex md:h-64">
+        <div class="h-64 md:h-auto md:w-48 flex-1 bg-center bg-cover rounded-t md:rounded-t-none md:rounded-l overflow-hidden" style="background-image: url('<%= engineer[:image] %>')">
         </div>
-          <h2><%= engineer[:name] %></h2>
-          <h3><%= engineer[:specialty] %></h3>
-          <p class="resume"><%= "#{human_age(engineer[:birthday], lang)}, #{engineer[:resume]}" %></p>
-          <a class="more" href="<%= slug %>/<%= engineer[:slug] %>"><%= locale[:more] %></a>
+        <div class="p-4" style="flex:2">
+          <h2 class="sp-font text-3xl"><%= engineer[:name] %></h2>
+          <h3 class="sp-font font-thin text-2xl pb-2"><%= engineer[:specialty] %></h3>
+          <p class=""><%= "#{human_age(engineer[:birthday], lang)}, #{engineer[:resume]}" %></p>
+          <a class="inline-block mt-1 rounded bg-gray-200 px-4 py-1 text-black" href="<%= slug %>/<%= engineer[:slug] %>"><%= locale[:more] %></a>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
+  </div>
 </main>

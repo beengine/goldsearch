@@ -1,12 +1,10 @@
-<main>
-  <div class="content">
-    <div class="engineer">
-      <div class="portrait">
-      <img src="<%= engineer[:image] %>">
-    </div>
-      <h2><%= engineer[:name] %></h2>
-      <h3><%= engineer[:specialty] %></h3>
-      <p class="resume"><%= engineer[:desc] %></p>
+<main class="xl:mx-auto ccc md:flex block items-start">
+  <div style="flex:2" class="bg-bottom bg02 rounded shadow-lg m-2 overflow-hidden">
+    <img class="w-full rounded" src="<%= engineer[:image] %>">
+    <div class="px-6 py-4">
+      <h2 class="sp-font text-3xl"><%= engineer[:name] %></h2>
+      <h3 class="sp-font font-thin text-2xl"><%= engineer[:specialty] %></h3>
     </div>
   </div>
+  <div style="flex:5" class="rounded shadow-lg bg02 m-2 overflow-hidden"><%= engineer[:desc] %></div>
 </main>

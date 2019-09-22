@@ -2,17 +2,27 @@
 body {
   font-family: 'Open Sans', sans-serif;
   color: #fff;
-  background: url('images/bg02.jpg');
 }
 
 header, footer {
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
+
+.sp-font {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
 .bg01 {
   background: url('images/bg02.jpg');
 }
 
 .bg02 {
+  background: bottom repeat-x url('images/bg01.jpg') #222628;
+  opacity: .95;
+}
+
+.bg02-rotated {
+  transform: rotate(180deg);
   background: url('images/bg01.jpg');
 }
 
@@ -33,7 +43,7 @@ header, footer {
 }
 
 .moto {
-  padding-left: 70px;
+  padding-left: 55px;
 }
 
 h1 {
@@ -41,15 +51,19 @@ h1 {
   font-size: 28px;
   font-weight: 300;
   text-align: center;
-}
-
-main img {
-  padding: 7px;
+  width: 100%;
 }
 
 .cc {
   max-width: 1260px;
-  padding: 0 5px;
+}
+.ccc {
+  max-width: 1260px;
+}
+@media all and (min-width: 1260px) {
+  .ccc {
+    max-width: 1276px;
+  }
 }
 
 .swiper-slide {

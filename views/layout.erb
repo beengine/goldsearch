@@ -9,17 +9,17 @@
   <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
   <meta name="description" content="<%= locale[:description] %>" />
 </head>
-<body>
-  <header class="bg01 hidden md:block bottom-0 inset-x-0 py-3 md:py-0">
+<body class="bg01">
+  <header class="hidden md:block bottom-0 inset-x-0 py-3 md:py-0">
     <div class="container flex mx-auto font-thin text-xl text-center">
       <a class="flex-1 hover:text-gray-500" href="mailto:notebooc@gmail.com">notebooc@gmail.com</a>
       <a class="flex-1 hover:text-gray-500" href="tel:+380964538453">+380 96 453 8 453</a>
       <a class="flex-1 hover:text-gray-500" href="tel:+380735070111">+380 73 5070 111</a>
     </div>
   </header>
-  <header class="bg02 text-3xl md:text-3xl lg:text-4xl">
-    <div class="flex items-center justify-between mx-auto font-thin cc">
-      <div class="relative">
+  <header class="text-3xl md:text-3xl lg:text-4xl">
+    <div class="bg02 shadow-lg rounded flex items-center justify-between mt-2 md:mt-0 px-2 mx-2 xl:mx-auto font-thin cc">
+      <div class="">
         <a href="<%= locale[:home_link] %>">
           <img class="inline-block absolute h-16 w-16 mt-1 lg:mt-2" src="/images/logo.png">
           <div class="inline-block moto">
@@ -30,7 +30,7 @@
       </div>
       <nav class="hidden sm:block">
           <% nav.where(parent_id: nil, lang: lang).each do |article| %>
-            <div class="dropdown inline-block">
+            <div class="dropdown inline-block relative">
               <a href="/<%= article[:slug] %>"><%= article[:title] %></a>
               <div class="dropdown-window bg02 p-2 pt-0">
                 <% nav.where(parent_id: article[:id]).each do |article_1| %>
@@ -47,7 +47,7 @@
         <a href="/главная">RU</a>
       </div>
       <div class="dropdown sm:hidden">
-        <button type="button" class="pr-3">
+        <button type="button" class="">
           &#9776;
         </button>
         <div class="dropdown-window bg02 p-2 pt-0 right-0">
@@ -61,8 +61,8 @@
   </header>
   <%= yield %>
   <div class="clearfix pb-16"></div>
-  <footer class="bg02 fixed md:static bottom-0 inset-x-0 py-3 md:py-0">
-    <div class="container flex mx-auto font-thin text-xl text-center">
+  <footer class="fixed md:static bottom-0 inset-x-0 py-3 md:py-0 md:mb-2">
+    <div class="bg02 shadow-lg rounded flex mx-2 xl:mx-auto font-thin text-xl text-center cc">
       <a class="flex-1 hover:text-gray-500" href="mailto:notebooc@gmail.com">notebooc@gmail.com</a>
       <a class="flex-1 hover:text-gray-500" href="tel:+380964538453">+380 96 453 8 453</a>
       <a class="flex-1 hover:text-gray-500 hidden md:block" href="tel:+380735070111">+380 73 5070 111</a>

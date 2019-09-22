@@ -1,77 +1,28 @@
-<main class="home">
-  <div class="content">
-    <div class="text-top">
-      <%= sliders.first[locale[:text]] %>
-    </div>
-    <div class="swiper-container swiper-top">
-      <div class="swiper-wrapper">
-          <div class="swiper-slide" style="background-image: url('<%= sliders.first[:image_1] %>')"></div>
-          <% if sliders.first[:image_2] %>
-            <div class="swiper-slide" style="background-image: url('<%= sliders.first[:image_2] %>')"></div>
-          <% end %>
-          <% if sliders.first[:image_3] %>
-            <div class="swiper-slide" style="background-image: url('<%= sliders.first[:image_3] %>')"></div>
-          <% end %>
-          <% if sliders.first[:image_4] %>
-            <div class="swiper-slide" style="background-image: url('<%= sliders.first[:image_4] %>')"></div>
-          <% end %>
-          <% if sliders.first[:image_5] %>
-            <div class="swiper-slide" style="background-image: url('<%= sliders.first[:image_5] %>')"></div>
-          <% end %>
+<main class="relative" style="z-index: -1">
+  <% sliders.all.each_with_index do |slider, i| %>
+    <div class="bg02 rounded shadow-lg m-2 xl:mx-auto cc md:flex">
+      <div id="slider<%= i %>" class="h-48 md:h-auto md:w-48 flex-1 bg-center bg-cover rounded-t md:rounded-t-none md:rounded-l overflow-hidden" style="background-image: url('<%= slider[:image_1] %>')">
       </div>
-    </div>
-  </div>
-  <% sliders.all[1..-1].each do |slider| %>
-    <div class="content">
-      <div class="text-bottom">
-        <%= slider[locale[:text]] %>
-      </div>
-      <div class="swiper-container swiper-bottom">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" style="background-image: url('<%= slider[:image_1] %>')"></div>
-          <% if slider[:image_2] %>
-            <div class="swiper-slide" style="background-image: url('<%= slider[:image_2] %>')"></div>
-          <% end %>
-          <% if slider[:image_3] %>
-            <div class="swiper-slide" style="background-image: url('<%= slider[:image_3] %>')"></div>
-          <% end %>
-          <% if slider[:image_4] %>
-            <div class="swiper-slide" style="background-image: url('<%= slider[:image_4] %>')"></div>
-          <% end %>
-          <% if slider[:image_5] %>
-            <div class="swiper-slide" style="background-image: url('<%= slider[:image_5] %>')"></div>
-          <% end %>
-        </div>
+      <div class="p-4" style="flex:2">
+        <% sliders.first[locale[:text]] %>
+        Ми пропонуємо супровід, виконання поточних чи аудит уже виконаних геологорозвідувальних робіт. Роботи виконуємо без посередників, без додаткових витрат. Розрахунок за виконані роботи може проводитися безпосередньо з виконавцями. У розділі «Наша команда», Ви зможете самі підібрати собі необхідних спеціалістів. Ми відповідно організуємо їх виліт до місця призначення.
+  Використовуючи наш досвід, знання та вміння у галузі рудної та нерудної геології, ми можемо суттєво допомогти Вам уникнути небажаних ризиків у цій сфері бізнесу, найти вірний підхід та шляхи в оцінці, підготовці та реалізації проектів пов’язаних з пошуками, розвідкою та видобуванням корисних копалин у будь якому місці нашої планети.
+  Золото, солі, нафта, газ, вода, далеко не повний перелік корисних копалин в оцінці об’єктів яких ми маємо достатній багаж знань та вмінь.
+
+  Рудні та розсипні родовища золота нами були вивчені та оцінені в різних країнах нашої планети.
       </div>
     </div>
   <% end %>
 </main>
 
-<div class="carousel relative shadow-2xl bg-white">
-  <div class="carousel-inner relative overflow-hidden w-full">
-    <!--Slide 1-->
-    <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
-    <div class="carousel-item absolute opacity-0" style="height:50vh;">
-      <div class="block h-full w-full bg-indigo-500 text-white text-5xl text-center" style="background-image: url('<%= sliders.first[:image_1] %>')"></div>
-    </div>
-    <label for="carousel-3" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-    <label for="carousel-2" class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
-    
-    <!--Slide 2-->
-    <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
-    <div class="carousel-item absolute opacity-0" style="height:50vh;">
-      <div class="block h-full w-full bg-orange-500 text-white text-5xl text-center" style="background-image: url('<%= sliders.first[:image_1] %>')"></div>
-    </div>
-    <label for="carousel-1" class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-    <label for="carousel-3" class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label> 
-    
-    <!--Slide 3-->
-    <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
-    <div class="carousel-item absolute opacity-0" style="height:50vh;">
-      <div class="block h-full w-full bg-green-500 text-white text-5xl text-center" style="background-image: url('<%= sliders.first[:image_1] %>')"></div>
-    </div>
-    <label for="carousel-2" class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
-    <label for="carousel-1" class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
-    
-  </div>
-</div>
+<script>
+  let sliders = <%= sliders.map{ |s| [s[:image_1], s[:image_2], s[:image_3], s[:image_4], s[:image_5]].compact } %>
+  let cur_index = 0
+
+  setInterval(function(){
+    sliders.forEach(function (slider, i) {
+      document.getElementById("slider" + i).style.backgroundImage = "url('" + slider[cur_index % slider.length] + "')"
+    })
+    // document.getElementById("pic").style.backgroundImage = "url('/images/logo.png')"
+  }, 2000);
+</script>
