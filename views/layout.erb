@@ -29,17 +29,18 @@
         </a>
       </div>
       <nav class="hidden sm:block">
-          <% nav.where(parent_id: nil, lang: lang).each do |article| %>
-            <div class="dropdown inline-block relative">
-              <a href="/<%= article[:slug] %>"><%= article[:title] %></a>
-              <div class="dropdown-window bg02 p-2 pt-0">
-                <% nav.where(parent_id: article[:id]).each do |article_1| %>
-                  <a class="block rounded hover:bg-gray-900" href="<%= article_1[:slug] %>"><%= article_1[:title] %></a>
-                <% end %>
-              </div>
+        <a class="hidden md:inline" href="<%= locale[:home_link] %>"><%= locale[:main] %></a>
+        <% nav.where(parent_id: nil, lang: lang).each do |article| %>
+          <div class="dropdown inline-block relative">
+            <a href="/<%= article[:slug] %>"><%= article[:title] %></a>
+            <div class="dropdown-window bg02 p-2 pt-0">
+              <% nav.where(parent_id: article[:id]).each do |article_1| %>
+                <a class="block rounded hover:bg-gray-900" href="<%= article_1[:slug] %>"><%= article_1[:title] %></a>
+              <% end %>
             </div>
-          <% end %>
-          <a href="<%= locale[:team_link] %>"><%= locale[:header] %></a>
+          </div>
+        <% end %>
+        <a href="<%= locale[:team_link] %>"><%= locale[:header] %></a>
       </nav>
       <div class="text-right">
         <a href="/">EN</a>

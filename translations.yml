@@ -9,6 +9,7 @@ langs:
     years: years
     yearss: years
     more: More
+    main: Main
     description: gold search extraction exploration prospecting survey deposit ore minerals resource proven probable reserves drilling borehole core-drill sampling mining geology geologist Africa America goldmining
   - header: Команда
     home_link: /головна
@@ -20,6 +21,7 @@ langs:
     years: роки
     yearss: років
     more: Більше
+    main: Головна
     description: золото пошуки розвідка видобуток родовище руда корисні копалини мінерал ресурси бурова буріння колонкове опробування гірничий геологія геолог Африка Америка золотовидобування нафта вода кар’єр шахта
   - header: Команда
     home_link: /главная
@@ -31,4 +33,5 @@ langs:
     years: года
     yearss: лет
     more: Больше
+    main: Главная
     description: золото поиски разведка добыча месторождение руда полезные ископаемые ресурсы минерал буровая бурения колонковое опробование горный геология геолог Африка Америка золотодобыча нефть вода карьер шахта
