@@ -71,7 +71,7 @@
     <% engineers.each do |engineer_id, translations| %>
       <p>
         <a href="/admin/engineer?id=<%= engineer_id %>">
-          <img src="<%= translations.first[:image] %>" width="55" height="55" style="float: left; margin-right: 3px;">
+          <img src="<%= translations.first[:image] %>" width="42" height="56" style="float: left; margin-right: 5px;">
           <% translations.each do |translation| %>
            <% unless translation[:lang] %>
               <span style="color: red">Немає перекладів</span>

@@ -1,19 +1,21 @@
 <main>
-  <div class="sp-font bg02 rounded shadow-lg m-2 xl:mx-auto cc">
-    <h1><%= specialty[locale[:name]] %></h1>
-  </div>
-  <div class="sm:flex flex-wrap justify-center xl:mx-auto ccc">
+  <section class="bg02 rounded shadow-lg m-2 mb-0 xl:mx-auto cc">
+    <h1 class="sp-font text-4xl text-center font-thin"><%= specialty[locale[:name]] %></h1>
+  </section>
+  <div class="lg:flex flex-wrap xl:mx-auto ccc">
     <% engineers.each do |engineer| %>
-      <div class="flex-1 bg02 rounded shadow-lg m-2 md:flex">
-        <div class="h-64 md:h-auto md:w-48 flex-1 bg-center bg-cover rounded-t md:rounded-t-none md:rounded-l overflow-hidden" style="background-image: url('<%= engineer[:image] %>')">
-        </div>
-        <div class="p-4" style="flex:2">
-          <h2 class="sp-font text-3xl"><%= engineer[:name] %></h2>
-          <h3 class="sp-font font-thin text-2xl pb-2"><%= engineer[:specialty] %></h3>
-          <p class=""><%= "#{human_age(engineer[:birthday], lang)}, #{engineer[:resume]}" %></p>
-          <a class="block text-center md:inline-block mt-1 rounded bg-gray-200 px-4 py-1 text-black" href="<%= slug %>/<%= engineer[:slug] %>"><%= locale[:more] %></a>
-        </div>
-      </div>
+      <section class="flex-1 bg02 rounded shadow-lg m-2 lg:max-w-75">
+        <a class="block sm:flex h-full" href="<%= slug %>/<%= engineer[:slug] %>">
+          <div class="h-64 md:h-auto md:w-48 flex-1 bg-center bg-cover rounded-t md:rounded-t-none md:rounded-l overflow-hidden" style="background-image: url('<%= engineer[:image] %>')">
+          </div>
+          <div class="p-4" style="flex:2">
+            <h2 class="sp-font text-3xl"><%= engineer[:name] %></h2>
+            <h3 class="sp-font font-thin text-2xl pb-2"><%= engineer[:specialty] %></h3>
+            <p class=""><%= "#{human_age(engineer[:birthday], lang)}, #{engineer[:resume]}" %></p>
+            <button class="block text-center md:inline-block mt-1 rounded bg-gray-200 px-4 py-1 text-black"><%= locale[:more] %></button>
+          </div>
+        </a>
+      </section>
     <% end %>
   </div>
 </main>

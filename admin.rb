@@ -21,7 +21,7 @@ namespace '/admin' do
 
   get '/?' do
     engineers = DB['SELECT engineers.id, engineers.image, engineer_translations.name, engineer_translations.lang FROM engineers LEFT OUTER JOIN engineer_translations ON engineer_translations.engineer_id = engineers.id'].all.group_by{ |tr| tr[:id] }
-    erb :home, locals: { articles: DB[:articles], engineers: engineers, specialties: DB[:specialties].order(:id), sliders: DB[:sliders] }
+    erb :home, locals: { articles: DB[:articles].order(:id), engineers: engineers, specialties: DB[:specialties].order(:id), sliders: DB[:sliders] }
   end
 
   get '/login' do

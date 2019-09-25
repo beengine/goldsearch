@@ -18,7 +18,6 @@ header, footer {
 
 .bg02 {
   background: bottom repeat-x url('images/bg01.jpg') #222628;
-  opacity: .95;
 }
 
 .bg02-rotated {
@@ -29,29 +28,73 @@ header, footer {
 .dropdown-window {
   display: none;
   position: absolute;
-  opacity: 0.9;
+  opacity: 0.95;
   border-radius: 3px;
-  z-index: 5;
+  width: max-content;
+  z-index: 1;
 }
 .dropdown:hover > .dropdown-window {
   display: block;
 }
 
-.logo {
-  height: 70px;
-  width: 70px;
-}
-
 .moto {
-  padding-left: 55px;
+  padding-left: 48px;
 }
 
-h1 {
-  font-family: 'Yanone Kaffeesatz', sans-serif;
-  font-size: 28px;
-  font-weight: 300;
-  text-align: center;
-  width: 100%;
+@media all and (min-width: 1024px) {
+  .lg\:max-w-75 {
+    max-width: 75%;
+  }
+  .lg\:min-w-33 {
+    min-width: 30%;
+  }
+}
+
+.flex-max-3 {
+  flex: 1 0 30%;
+}
+
+article {
+  h1, h2, h3 {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-weight: 300;
+    text-align: center;
+  }
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  img {
+    padding: 4px;
+    width: auto;
+  }
+  a {
+    text-decoration: underline;
+    color: #bbb;
+  }
+  ul li {
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+  ul li:before {
+    margin-left: -20px;
+    content: '\1F528';
+  }
+  ol {
+    margin-left: 20px;
+    list-style-type: decimal;
+  }
+  ol li {
+    margin-top: 5px;
+  }
 }
 
 .cc {
@@ -65,11 +108,3 @@ h1 {
     max-width: 1276px;
   }
 }
-
-.swiper-slide {
-  background-size: contain !important;
-  background-repeat: no-repeat;
-  background-position: 0 50px !important;
-}
-
-

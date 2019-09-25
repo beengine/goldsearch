@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Gold Search</title>
-  <meta content="width=device-width" name="viewport" />
+  <meta content="width=device-width, initial-scale=1.00, maximum-scale=2.00, minimum-scale=1.00" name="viewport" />
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <link href="/style.css" rel="stylesheet" type="text/css" />
   <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32" />
@@ -10,29 +10,29 @@
   <meta name="description" content="<%= locale[:description] %>" />
 </head>
 <body class="bg01">
-  <header class="hidden md:block bottom-0 inset-x-0 py-3 md:py-0">
-    <div class="container flex mx-auto font-thin text-xl text-center">
+  <header class="hidden md:block bottom-0 inset-x-0 py-3 md:py-0 relative">
+    <div class="cc flex mx-auto font-thin text-xl text-center">
       <a class="flex-1 hover:text-gray-500" href="mailto:notebooc@gmail.com">notebooc@gmail.com</a>
       <a class="flex-1 hover:text-gray-500" href="tel:+380964538453">+380 96 453 8 453</a>
       <a class="flex-1 hover:text-gray-500" href="tel:+380735070111">+380 73 5070 111</a>
     </div>
   </header>
-  <header class="text-3xl md:text-3xl lg:text-4xl">
+  <header class="text-3xl md:text-3xl">
     <div class="bg02 shadow-lg rounded flex items-center justify-between mt-2 md:mt-0 px-2 mx-2 xl:mx-auto font-thin cc">
       <div class="">
         <a href="<%= locale[:home_link] %>">
-          <img class="inline-block absolute h-16 w-16 mt-1 lg:mt-2" src="/images/logo.png">
+          <img class="inline-block absolute h-12 w-12 mt-2" src="/images/logo.png">
           <div class="inline-block moto">
             <div class="text-center">Gold Search</div>
-            <div class="text-sm text-center">Mente Et Malleo</div>
+            <div class="text-sm text-center" style="margin-top:-11px">Mente Et Malleo</div>
           </div>
         </a>
       </div>
       <nav class="hidden sm:block">
-        <a class="hidden md:inline" href="<%= locale[:home_link] %>"><%= locale[:main] %></a>
+        <a class="hidden md:inline md:mr-1 lg:mr-3" href="<%= locale[:home_link] %>"><%= locale[:main] %></a>
         <% nav.where(parent_id: nil, lang: lang).each do |article| %>
           <div class="dropdown inline-block relative">
-            <a href="/<%= article[:slug] %>"><%= article[:title] %></a>
+            <a class="md:mr-1 lg:mr-3" href="/<%= article[:slug] %>"><%= article[:title] %></a>
             <div class="dropdown-window bg02 p-2 pt-0">
               <% nav.where(parent_id: article[:id]).each do |article_1| %>
                 <a class="block rounded hover:bg-gray-900" href="<%= article_1[:slug] %>"><%= article_1[:title] %></a>
@@ -42,18 +42,28 @@
         <% end %>
         <a href="<%= locale[:team_link] %>"><%= locale[:header] %></a>
       </nav>
-      <div class="text-right">
-        <a href="/">EN</a>
-        <a href="/головна">UA</a>
-        <a href="/главная">RU</a>
+      <div>
+        <% if lang == 1 %>
+          <a href="/">EN</a>
+          <a href="/главная">RU</a>
+        <% elsif lang == 2 %>
+          <a href="/">EN</a>
+          <a href="/головна">UA</a>
+        <% else %>
+          <a href="/головна">UA</a>
+          <a href="/главная">RU</a>
+        <% end %>
       </div>
       <div class="dropdown sm:hidden">
         <button type="button" class="">
           &#9776;
         </button>
-        <div class="dropdown-window bg02 p-2 pt-0 right-0">
+        <div class="dropdown-window bg02 p-2 pt-0 right-0 mr-2 leading-tight">
           <% nav.where(parent_id: nil, lang: lang).each do |article| %>
             <a class="block rounded hover:bg-gray-900" href="/<%= article[:slug] %>"><%= article[:title] %></a>
+            <% nav.where(parent_id: article[:id]).each do |article_1| %>
+            <a class="block rounded hover:bg-gray-900 ml-3" href="/<%= article_1[:slug] %>"><%= article_1[:title] %></a>
+            <% end %>
           <% end %>
           <a href="<%= locale[:team_link] %>"><%= locale[:header] %></a>
         </div>
