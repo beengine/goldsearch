@@ -1,9 +1,9 @@
 <main class="">
   <% sliders.all.each_with_index do |slider, i| %>
-    <section class="bg02 rounded shadow-lg m-2 xl:mx-auto cc md:flex">
-      <div id="slider<%= i %>" class="h-48 md:h-auto md:w-48 flex-1 bg-center bg-cover rounded-t md:rounded-t-none md:rounded-l overflow-hidden" style="background-image: url('<%= slider[:image_1] %>')">
+    <section class="bg02 rounded shadow-lg m-2 xl:mx-auto cc md:flex sliders md:rounded-special">
+      <div id="slider<%= i %>" class="h-48 md:h-auto md:w-48 flex-1 bg-center bg-cover rounded-t md:rounded-t-none overflow-hidden animated" style="background-image: url('<%= slider[:image_1] %>'); min-height: 250px">
       </div>
-      <div class="p-4" style="flex:2">
+      <div class="p-4 text-justify" style="flex:2">
         <%= slider[locale[:text]] %>
       </div>
     </section>
@@ -17,7 +17,7 @@
   setInterval(function(){
     sliders.forEach(function (slider, i) {
       document.getElementById("slider" + i).style.backgroundImage = "url('" + slider[cur_index % slider.length] + "')"
-      cur_index++
     })
-  }, 2000);
+    cur_index++
+  }, 3000);
 </script>

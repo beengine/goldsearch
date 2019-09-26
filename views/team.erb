@@ -4,7 +4,7 @@
   </section>
   <div class="sp-font text-3xl font-thin flex flex-wrap justify-center xl:mx-auto ccc">
     <% specialties.each do |specialty| %>
-      <section class="bg02 flex-1 rounded shadow-lg m-2 mb-0 flex-max-3">
+      <section class="bg02 flex-1 rounded shadow-lg m-1 flex-max-3">
         <a class="block" href="<%= slug %>/<%= specialty[locale[:slug]] %>" class="block">
           <div class="rounded-t bg-cover bg-center" style="min-width: 300px; height: 200px; background-image: url('<%= specialty[:image] %>')"></div>
           <div class="text-center rounded-b"><%= specialty[locale[:name]] %></div>

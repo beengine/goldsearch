@@ -20,11 +20,6 @@ header, footer {
   background: bottom repeat-x url('images/bg01.jpg') #222628;
 }
 
-.bg02-rotated {
-  transform: rotate(180deg);
-  background: url('images/bg01.jpg');
-}
-
 .dropdown-window {
   display: none;
   position: absolute;
@@ -40,13 +35,29 @@ header, footer {
 .moto {
   padding-left: 48px;
 }
+.animated {
+  transition: background-image 1s ease-in-out;
+}
 
-@media all and (min-width: 1024px) {
+.sliders:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+@media (min-width: 768px) {
+  .md\:rounded-special:nth-child(odd) > div:first-child {
+    border-bottom-left-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+  }
+
+  .md\:rounded-special:nth-child(even) > div:first-child {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
   .lg\:max-w-75 {
     max-width: 75%;
-  }
-  .lg\:min-w-33 {
-    min-width: 30%;
   }
 }
 
@@ -102,6 +113,7 @@ article {
 }
 .ccc {
   max-width: 1260px;
+  padding: 4px;
 }
 @media all and (min-width: 1260px) {
   .ccc {
