@@ -8,6 +8,13 @@
   <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16" />
   <meta name="description" content="<%= locale[:description] %>" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148892964-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-148892964-1');
+</script>
 </head>
 <body class="bg01">
   <header class="hidden md:block bottom-0 inset-x-0 py-3 md:py-0 relative">
@@ -59,6 +66,7 @@
           &#9776;
         </button>
         <div class="dropdown-window bg02 p-2 pt-0 right-0 mr-2 leading-tight">
+          <a class="block rounded hover:bg-gray-900" href="<%= locale[:home_link] %>"><%= locale[:main] %></a>
           <% nav.where(parent_id: nil, lang: lang).each do |article| %>
             <a class="block rounded hover:bg-gray-900" href="/<%= article[:slug] %>"><%= article[:title] %></a>
             <% nav.where(parent_id: article[:id]).each do |article_1| %>
