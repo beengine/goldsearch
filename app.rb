@@ -5,7 +5,6 @@ require 'sinatra/config_file'
 require 'sequel'
 require 'pg'
 
-
 configure do
   if development?
     DB = Sequel.connect(adapter: :postgres, database: 'gold_dev', host: 'localhost')
@@ -24,7 +23,6 @@ end
 config_file 'translations.yml'
 enable :sessions
 
-
 helpers do
   def human_age(birthday, lang)
     age = Time.new.year - birthday
@@ -35,6 +33,11 @@ helpers do
     else
       "#{age} #{settings.langs[lang][:yearss]}"
     end
+  end
+  def erb_with_locals(template, lang, locals)
+    erb template, locals: { nav: DB[:articles].where(lang: lang).order(:id),
+                            lang: lang,
+                            locale: settings.langs[lang] }.merge(locals)
   end
 end
 
@@ -50,48 +53,33 @@ end
 
 HOME_SLUGS.each_with_index do |slug, lang|
   get slug do
-    erb :home, locals: { sliders: DB[:sliders].order(:order),
-                         nav: DB[:articles].where(lang: lang).order(:id),
-                         lang: lang,
-                         locale: settings.langs[lang] }
+    erb_with_locals :home, lang, sliders: DB[:sliders].order(:order), title: settings.langs[lang][:main]
   end
 end
 
 TEAM_SLUGS.each_with_index do |slug, lang|
   get slug do
-    erb :team, locals: { nav: DB[:articles].where(lang: lang).order(:id),
-                         lang: lang,
-                         locale: settings.langs[lang],
-                         specialties: DB[:specialties].order(:id),
-                         slug: slug }
+    erb_with_locals :team, lang, specialties: DB[:specialties].order(:id), slug: slug, title: settings.langs[lang][:header]
   end
 
   get "#{slug}/:specialty" do
     specialty = DB[:specialties].where(settings.langs[lang][:slug] => params[:specialty]).first
-    engineers = DB[:engineers].join(:engineer_translations, engineer_id: :id).where(lang: lang, specialty_id: specialty[:id]).order(:order)
-    erb :specialty, locals: { locale: settings.langs[lang],
-                              lang: lang,
-                              specialty: specialty,
-                              engineers: engineers,
-                              nav: DB[:articles].where(lang: lang).order(:id),
-                              slug: ENGINEER_SLUGS[lang] }
+    erb_with_locals :specialty, lang, specialty: specialty,
+                                      engineers: DB[:engineers].join(:engineer_translations, engineer_id: :id).where(lang: lang, specialty_id: specialty[:id]).order(:order),
+                                      slug: ENGINEER_SLUGS[lang],
+                                      title: specialty[settings.langs[lang][:name]]
   end
 end
 
 ENGINEER_SLUGS.each_with_index do |slug, lang|
   get "#{slug}/:engineer" do
     engineer = DB[:engineers].join(:engineer_translations, engineer_id: :id).where(lang: lang, slug: params[:engineer]).first
-    erb :engineer, locals: { locale: settings.langs[lang],
-                             lang: lang,
-                             engineer: engineer,
-                             nav: DB[:articles].where(lang: lang).order(:id),
-                             slug: slug }
+    erb_with_locals :engineer, lang, engineer: engineer, slug: slug, title: engineer[:name]
   end
 end
 
 get '/:slug' do
   params[:slug] ||= ''
   article = DB[:articles].where(slug: params[:slug]).first
-  lang = article[:lang]
-  erb :article, locals: { article: article, nav: DB[:articles].where(lang: lang).order(:id), locale: settings.langs[lang], lang: lang }
+  erb_with_locals :article, article[:lang], article: article, title: article[:title]
 end

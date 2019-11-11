@@ -11,7 +11,7 @@
 </main>
 
 <script>
-  let sliders = <%= sliders.map{ |s| [s[:image_1], s[:image_2], s[:image_3], s[:image_4], s[:image_5]].compact } %>
+  const sliders = <%= sliders.map{ |s| [s[:image_1], s[:image_2], s[:image_3], s[:image_4], s[:image_5]].compact } %>
   let cur_index = 0
 
   setInterval(function(){
