@@ -4,6 +4,7 @@ require 'sinatra/namespace'
 require 'sinatra/config_file'
 require 'sequel'
 require 'pg'
+require 'uri'
 
 configure do
   if development?
@@ -64,6 +65,7 @@ TEAM_SLUGS.each_with_index do |slug, lang|
 
   get "#{slug}/:specialty" do
     specialty = DB[:specialties].where(settings.langs[lang][:slug] => params[:specialty]).first
+    redirect "#{URI::encode(slug)}" unless specialty
     erb_with_locals :specialty, lang, specialty: specialty,
                                       engineers: DB[:engineers].join(:engineer_translations, engineer_id: :id).where(lang: lang, specialty_id: specialty[:id]).order(:order),
                                       slug: ENGINEER_SLUGS[lang],
@@ -74,8 +76,21 @@ end
 ENGINEER_SLUGS.each_with_index do |slug, lang|
   get "#{slug}/:engineer" do
     engineer = DB[:engineers].join(:engineer_translations, engineer_id: :id).where(lang: lang, slug: params[:engineer]).first
+    redirect "#{URI::encode(TEAM_SLUGS[lang])}" unless engineer
     erb_with_locals :engineer, lang, engineer: engineer, slug: slug, title: engineer[:name]
   end
+end
+
+get '/Water' do
+  redirect '/water'
+end
+
+get '/Oil' do
+  redirect '/oil-gas'
+end
+
+get '/Gold' do
+  redirect '/gold'
 end
 
 get '/:slug' do
@@ -84,7 +99,6 @@ get '/:slug' do
   if article
     erb_with_locals :article, article[:lang], article: article, title: article[:title]
   else
-    status 404
-    erb_with_locals :not_found, 0, title: 'Page Not Found'
+    redirect '/'
   end
 end
