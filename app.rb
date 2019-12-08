@@ -34,7 +34,7 @@ helpers do
       "#{age} #{settings.langs[lang][:yearss]}"
     end
   end
-  def erb_with_locals(template, lang, locals)
+  def erb_with_locals(template, lang, locals = {})
     erb template, locals: { nav: DB[:articles].where(lang: lang).order(:id),
                             lang: lang,
                             locale: settings.langs[lang] }.merge(locals)
@@ -81,5 +81,10 @@ end
 get '/:slug' do
   params[:slug] ||= ''
   article = DB[:articles].where(slug: params[:slug]).first
-  erb_with_locals :article, article[:lang], article: article, title: article[:title]
+  if article
+    erb_with_locals :article, article[:lang], article: article, title: article[:title]
+  else
+    status 404
+    erb_with_locals :not_found, 0, title: 'Page Not Found'
+  end
 end
