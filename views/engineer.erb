@@ -3,8 +3,8 @@
     <img class="rounded h-40 sm:h-auto w-auto sm:w-full" src="<%= engineer[:image] %>">
     <div class="px-6 py-4">
       <h2 class="sp-font text-2xl sm:text-3xl"><%= engineer[:name] %></h2>
-      <h3 class="sp-font font-thin text-md sm:text-2xl"><%= engineer[:specialty] %></h3>
+      <h3 class="sp-font font-thin text-md sm:text-3xl uppercase"><%= engineer[:specialty] %></h3>
     </div>
   </section>
-  <article style="flex:5" class="rounded shadow-lg bg02 px-6 py-4 m-1 overflow-scroll"><%= engineer[:desc] %></article>
+  <article style="flex:5" class="rounded shadow-lg bg02 px-6 py-4 m-1 overflow-scroll leading-relaxed"><%= engineer[:desc] %></article>
 </main>

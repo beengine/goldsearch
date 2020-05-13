@@ -1,8 +1,8 @@
-<main>
+<main class="uppercase tracking-widest">
   <section class="bg02 rounded shadow-lg m-2 mb-0 xl:mx-auto cc">
-    <h1 class="sp-font text-4xl text-center font-thin"><%= locale[:header] %></h1>
+    <h1 class="sp-font text-xl text-center text-3xl"><%= locale[:header] %></h1>
   </section>
-  <div class="sp-font text-3xl font-thin flex flex-wrap justify-center xl:mx-auto ccc">
+  <div class="sp-font text-3xl flex flex-wrap justify-center xl:mx-auto ccc">
     <% specialties.each do |specialty| %>
       <section class="bg02 flex-1 rounded shadow-lg m-1 flex-max-3">
         <a class="block" href="<%= slug %>/<%= specialty[locale[:slug]] %>" class="block">

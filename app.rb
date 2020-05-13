@@ -81,18 +81,6 @@ ENGINEER_SLUGS.each_with_index do |slug, lang|
   end
 end
 
-get '/Water' do
-  redirect '/water'
-end
-
-get '/Oil' do
-  redirect '/oil-gas'
-end
-
-get '/Gold' do
-  redirect '/gold'
-end
-
 get '/:slug' do
   params[:slug] ||= ''
   article = DB[:articles].where(slug: params[:slug]).first

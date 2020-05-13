@@ -1,4 +1,4 @@
-<main class="">
+<main class="leading-relaxed">
   <% sliders.all.each_with_index do |slider, i| %>
     <section class="bg02 rounded shadow-lg m-2 xl:mx-auto cc md:flex sliders md:rounded-special">
       <div id="slider<%= i %>" class="h-48 md:h-auto md:w-48 flex-1 bg-center bg-cover rounded-t md:rounded-t-none overflow-hidden animated" style="background-image: url('<%= slider[:image_1] %>'); min-height: 250px">
@@ -12,9 +12,11 @@
 
 <script>
   const sliders = <%= sliders.map{ |s| [s[:image_1], s[:image_2], s[:image_3], s[:image_4], s[:image_5]].compact } %>
-  let cur_index = 0
+  let indexes = []
 
-  sliders.forEach(function (slider) {
+  sliders.forEach(function (slider, i) {
+    indexes[i] = slider.length;
+    slider_index = 0;
     slider.forEach(function (image_src) {
       let image = new Image();
       image.src = image_src;
@@ -22,9 +24,9 @@
   })
 
   setInterval(function(){
-    sliders.forEach(function (slider, i) {
-      document.getElementById("slider" + i).style.backgroundImage = "url('" + slider[cur_index % slider.length] + "')"
-    });
-    cur_index++;
-  }, 3000);
+    let slider = slider_index % sliders.length;
+    indexes[slider]++;
+    document.getElementById("slider" + slider).style.backgroundImage = "url('" + sliders[slider][indexes[slider] % sliders[slider].length] + "')"
+    slider_index++;
+  }, 500);
 </script>
