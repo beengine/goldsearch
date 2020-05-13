@@ -40,6 +40,12 @@ helpers do
                             lang: lang,
                             locale: settings.langs[lang] }.merge(locals)
   end
+
+  def highlight?(x, y)
+    return unless x == y
+
+    'pt-3 border-t-4'
+  end
 end
 
 require './admin'
@@ -54,13 +60,13 @@ end
 
 HOME_SLUGS.each_with_index do |slug, lang|
   get slug do
-    erb_with_locals :home, lang, sliders: DB[:sliders].order(:order), title: settings.langs[lang][:main]
+    erb_with_locals :home, lang, sliders: DB[:sliders].order(:order), title: settings.langs[lang][:main], nav_high: slug
   end
 end
 
 TEAM_SLUGS.each_with_index do |slug, lang|
   get slug do
-    erb_with_locals :team, lang, specialties: DB[:specialties].order(:id), slug: slug, title: settings.langs[lang][:header]
+    erb_with_locals :team, lang, specialties: DB[:specialties].order(:id), slug: slug, title: settings.langs[lang][:header], nav_high: slug
   end
 
   get "#{slug}/:specialty" do
@@ -69,7 +75,8 @@ TEAM_SLUGS.each_with_index do |slug, lang|
     erb_with_locals :specialty, lang, specialty: specialty,
                                       engineers: DB[:engineers].join(:engineer_translations, engineer_id: :id).where(lang: lang, specialty_id: specialty[:id]).order(:order),
                                       slug: ENGINEER_SLUGS[lang],
-                                      title: specialty[settings.langs[lang][:name]]
+                                      title: specialty[settings.langs[lang][:name]],
+                                      nav_high: slug
   end
 end
 
@@ -77,7 +84,7 @@ ENGINEER_SLUGS.each_with_index do |slug, lang|
   get "#{slug}/:engineer" do
     engineer = DB[:engineers].join(:engineer_translations, engineer_id: :id).where(lang: lang, slug: params[:engineer]).first
     redirect "#{URI::encode(TEAM_SLUGS[lang])}" unless engineer
-    erb_with_locals :engineer, lang, engineer: engineer, slug: slug, title: engineer[:name]
+    erb_with_locals :engineer, lang, engineer: engineer, slug: slug, title: engineer[:name], nav_high: "/team"
   end
 end
 
@@ -85,7 +92,7 @@ get '/:slug' do
   params[:slug] ||= ''
   article = DB[:articles].where(slug: params[:slug]).first
   if article
-    erb_with_locals :article, article[:lang], article: article, title: article[:title]
+    erb_with_locals :article, article[:lang], article: article, title: article[:title], nav_high: params[:slug]
   else
     redirect '/'
   end

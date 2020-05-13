@@ -36,10 +36,10 @@
         </a>
       </div>
       <nav class="hidden sm:block text-2xl uppercase">
-        <a class="hidden md:inline md:mr-1 lg:mr-3" href="<%= locale[:home_link] %>"><%= locale[:main] %></a>
+        <a class="hidden md:inline md:mr-1 lg:mr-3 <%= highlight?(nav_high, locale[:home_link]) %>" href="<%= locale[:home_link] %>"><%= locale[:main] %></a>
         <% nav.where(parent_id: nil, lang: lang).each do |article| %>
           <div class="dropdown inline-block relative">
-            <a class="md:mr-1 lg:mr-3 md:ml-1 lg:ml-3" href="/<%= article[:slug] %>"><%= article[:title] %></a>
+            <a class="md:mr-1 lg:mr-3 md:ml-1 lg:ml-3 <%= highlight?(nav_high, article[:slug]) %>" href="/<%= article[:slug] %>"><%= article[:title] %></a>
             <div class="dropdown-window bg02 pb-2 pt-0 shadow-lg">
               <% nav.where(parent_id: article[:id]).each do |article_1| %>
                 <a class="block rounded hover:bg-gray-900 mr-1 lg:mr-3 ml-1 lg:ml-3" href="/<%= article_1[:slug] %>"><%= article_1[:title] %></a>
@@ -47,7 +47,7 @@
             </div>
           </div>
         <% end %>
-        <a class="md:ml-1 lg:ml-3" href="<%= locale[:team_link] %>"><%= locale[:header] %></a>
+        <a class="md:ml-1 lg:ml-3 <%= highlight?(nav_high, locale[:team_link]) %>" href="<%= locale[:team_link] %>"><%= locale[:header] %></a>
       </nav>
       <div class="text-2xl">
         <% if lang == 1 %>
