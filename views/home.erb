@@ -14,10 +14,17 @@
   const sliders = <%= sliders.map{ |s| [s[:image_1], s[:image_2], s[:image_3], s[:image_4], s[:image_5]].compact } %>
   let cur_index = 0
 
+  sliders.forEach(function (slider) {
+    slider.forEach(function (image_src) {
+      let image = new Image();
+      image.src = image_src;
+    })
+  })
+
   setInterval(function(){
     sliders.forEach(function (slider, i) {
       document.getElementById("slider" + i).style.backgroundImage = "url('" + slider[cur_index % slider.length] + "')"
-    })
-    cur_index++
+    });
+    cur_index++;
   }, 3000);
 </script>
