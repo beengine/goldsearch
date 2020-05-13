@@ -66,7 +66,7 @@ end
 
 TEAM_SLUGS.each_with_index do |slug, lang|
   get slug do
-    erb_with_locals :team, lang, specialties: DB[:specialties].order(:id), slug: slug, title: settings.langs[lang][:header], nav_high: slug
+    erb_with_locals :team, lang, specialties: DB[:specialties].order(:id), slug: slug, title: settings.langs[lang][:header], nav_high: 'team'
   end
 
   get "#{slug}/:specialty" do
@@ -76,7 +76,7 @@ TEAM_SLUGS.each_with_index do |slug, lang|
                                       engineers: DB[:engineers].join(:engineer_translations, engineer_id: :id).where(lang: lang, specialty_id: specialty[:id]).order(:order),
                                       slug: ENGINEER_SLUGS[lang],
                                       title: specialty[settings.langs[lang][:name]],
-                                      nav_high: slug
+                                      nav_high: 'team'
   end
 end
 
@@ -84,7 +84,7 @@ ENGINEER_SLUGS.each_with_index do |slug, lang|
   get "#{slug}/:engineer" do
     engineer = DB[:engineers].join(:engineer_translations, engineer_id: :id).where(lang: lang, slug: params[:engineer]).first
     redirect "#{URI::encode(TEAM_SLUGS[lang])}" unless engineer
-    erb_with_locals :engineer, lang, engineer: engineer, slug: slug, title: engineer[:name], nav_high: "/team"
+    erb_with_locals :engineer, lang, engineer: engineer, slug: slug, title: engineer[:name], nav_high: 'team'
   end
 end
 
