@@ -53,11 +53,15 @@ header, footer {
     border-top-right-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;
   }
+
+  .md\:w-72 {
+    width: 18rem;
+  }
 }
 
 @media (min-width: 1024px) {
-  .lg\:max-w-75 {
-    max-width: 75%;
+  .lg\:max-w-50 {
+    max-width: 50%;
   }
 }
 

@@ -4,9 +4,9 @@
   </section>
   <div class="lg:flex flex-wrap xl:mx-auto ccc">
     <% engineers.each do |engineer| %>
-      <section class="flex-1 bg02 rounded shadow-lg m-1 lg:max-w-75 mb-2 lg:mb-1">
+      <section class="flex-1 bg02 rounded shadow-lg m-1 lg:max-w-50 mb-2 lg:mb-1">
         <a class="block sm:flex h-full" href="<%= slug %>/<%= engineer[:slug] %>">
-          <div class="h-64 md:h-auto md:w-48 flex-1 bg-center bg-cover rounded-t md:rounded-t-none md:rounded-l overflow-hidden" style="background-image: url('<%= engineer[:image] %>')">
+          <div class="h-64 md:h-auto md:w-72 flex-1 bg-center bg-cover rounded-t md:rounded-t-none md:rounded-l overflow-hidden" style="background-image: url('<%= engineer[:image] %>')">
           </div>
           <div class="p-4" style="flex:2">
             <h2 class="sp-font text-2xl tracking-wider"><%= engineer[:name] %></h2>
