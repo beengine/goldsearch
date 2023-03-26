@@ -12,7 +12,15 @@ configure do
     PASSWORD = 'r'
   else
     db = URI.parse(ENV['DATABASE_URL'])
-    DB = Sequel.connect(adapter: :postgres, host: db.host, user: db.user, database: db.path[1..-1], password: db.password)
+    DB = Sequel.connect(
+      adapter: :postgres,
+      host: db.host,
+      user: db.user,
+      database: db.path[1..-1],
+      password: db.password,
+      port: db.port
+    )
+
     PASSWORD = ENV["PASSWORD"]
   end
   LANGS = %w(анлійська українська російська)
